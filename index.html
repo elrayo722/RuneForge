@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guía Interactiva de League of Legends</title>
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --card:#13141a;
+      --muted:#9aa3b2;
+      --accent:#6aa6ff;
+      --accent-2:#00d4a6;
+      --text:#e9edf1;
+      --danger:#ff6b6b;
+      --warn:#ffb020;
+      --ok:#1ecb8c;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      background:radial-gradient(1200px 800px at 70% -10%, #0f172a 0%, #0b0b10 40%, #0b0b10 100%);
+      color:var(--text);
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(11,11,16,0.7);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid #1e2230;
+    }
+    .wrap{max-width:1000px;margin:0 auto;padding:18px 16px;}
+    .title{
+      display:flex;gap:10px;align-items:center;justify-content:center;
+      font-weight:800;letter-spacing:.2px;font-size:20px;
+    }
+    .title .pill{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    main .panel{
+      background:var(--card);
+      border:1px solid #1e2230;
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    .controls{
+      display:grid;grid-template-columns:1fr 160px 180px auto;
+      gap:10px;align-items:center;
+    }
+    @media (max-width:780px){
+      .controls{grid-template-columns:1fr 1fr;}
+    }
+    input, select, button, textarea{
+      background:#0e111a;
+      border:1px solid #262b3a;
+      color:var(--text);
+      padding:10px 12px;border-radius:12px;
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(106,166,255,.15);
+    }
+    button{
+      cursor:pointer;
+      font-weight:700;
+      transition:transform .06s ease, box-shadow .2s ease, background .2s ease;
+      background:linear-gradient(180deg,#1b62ff,#0f3aa6);
+      border:none;
+    }
+    button:hover{transform:translateY(-1px)}
+    button:active{transform:translateY(0)}
+    .badge{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+    .result{
+      margin-top:14px;
+      background:#0c0f17;border:1px solid #23283a;border-radius:14px;padding:14px;
+      min-height:100px;
+    }
+    .result h3{margin:0 0 8px 0;font-size:18px}
+    .hint{font-size:13px;color:var(--muted);margin-top:8px}
+    .row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .chip{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      border:1px dashed #2b3146;color:#b8c0d0;
+    }
+    .empty{
+      display:grid;place-items:center;text-align:center;color:var(--muted);
+      border:1px dashed #2b3146;border-radius:12px;padding:28px;margin-top:10px
+    }
+    .footer{margin-top:14px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px}
+    .status-ahead{color:var(--ok)}
+    .status-behind{color:var(--danger)}
+    .status-even{color:var(--warn)}
+    .small{font-size:12px;color:var(--muted)}
+    .list{margin-top:8px}
+    .list li{margin:6px 0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap title">
+      <span>Guía Interactiva</span>
+      <span class="pill">League of Legends</span>
+    </div>
+  </header>
+
+  <div class="wrap" style="margin-top:14px;">
+    <div class="panel">
+      <div class="controls" role="group" aria-label="Controles de búsqueda">
+        <div>
+          <label class="small" for="champion">Campeón</label>
+          <input id="champion" list="champions-list" placeholder="Ej.: Yasuo, Ahri, Garen, Lee Sin" autocomplete="off" />
+          <datalist id="champions-list"></datalist>
+        </div>
+        <div>
+          <label class="small" for="fase">Fase</label>
+          <select id="fase">
+            <option value="early">Early Game</option>
+            <option value="mid">Mid Game</option>
+            <option value="late">Late Game</option>
+          </select>
+        </div>
+        <div>
+          <label class="small" for="estado">Estado</label>
+          <select id="estado">
+            <option value="even">Partida Igualada</option>
+            <option value="ahead">Vas Muy Bien (snowball)</option>
+            <option value="behind">Vas Muy Mal (detrás)</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <button id="buscar">Buscar</button>
+        </div>
+      </div>
+
+      <div class="hint">Consejo: pulsa <strong>Enter</strong> en el buscador para ejecutar.</div>
+
+      <div id="resultado" class="result">
+        <div class="empty">
+          Escribe un campeón y selecciona fase + estado.<br />
+          La guía mostrará <em>acciones específicas</em> para esa situación.
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="tags" id="quick-chips"></div>
+        <div>Extiende la guía añadiendo más campeones en el código (objeto <code>estrategias</code>).</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===============
+    // Base de datos de estrategias
+    // Estructura: estrategias[campeon][fase][estado] = { titulo, puntos:[...] }
+    // Añade tantos campeones y casos como quieras siguiendo el formato.
+    // ===============
+    const estrategias = {
+      "yasuo": {
+        "early": {
+          "even": {
+            titulo: "Control y preparación de all-in",
+            puntos: [
+              "Farmea seguro con Q (acero tempestuoso); evita gastar el muro (W) antes de nivel 3.",
+              "Busca tradeos cortos: E + Q a súbdito para no exponerte; retírate al instante.",
+              "Mantén la oleada en el centro o ligeramente hacia tu lado para minimizar ganks.",
+              "Guarda el tornado para castigar saltos del rival o para forzar su destello."
+            ]
+          },
+          "ahead": {
+            titulo: "Abuso de ventaja y denegar recursos",
+            puntos: [
+              "Congela la oleada cerca de tu torre para obligar al rival a sobre-extenderse.",
+              "Forza intercambios cada vez que W y E estén disponibles; castiga la falta de hechizos.",
+              "Llama a tu jungla para dives coordinados; tanquea con minions reducidos por E.",
+              "Coloca visión profunda en picuchillos y río; prepara rotación a cangrejo/heraldo."
+            ]
+          },
+          "behind": {
+            titulo: "Recuperación y seguridad",
+            puntos: [
+              "Juega bajo torre; farmea con Q y evita usar E de forma agresiva.",
+              "No busques all-in sin jungla; espera errores del rival o rotaciones favorables.",
+              "Compra objetos defensivos tempranos (Tabis/Placas según daño).",
+              "Pingea tu estado; acepta perder algunos súbditos si hay riesgo de morir."
+            ]
+          }
+        },
+        "mid": {
+          "even": {
+            titulo: "Rotaciones con propósito",
+            puntos: [
+              "Empuja y rota con tu jungla a objetivos neutrales (dragón/heraldo).",
+              "Busca peleas donde puedas ultimar a múltiples enemigos tras un knock-up aliado.",
+              "No splitpusees sin visión; prioriza peleas 5v5 controladas."
+            ]
+          },
+          "ahead": {
+            titulo: "Presión lateral y picks",
+            puntos: [
+              "Haz 1-3-1 o 4-1 según composición; exige respuesta en side.",
+              "Ambusca en jungla enemiga y fuerza destellos con tornado cargado.",
+              "Si te colapsan, usa W para cortar proyectiles y kitea hacia tu equipo."
+            ]
+          },
+          "behind": {
+            titulo: "Juego en torno al equipo",
+            puntos: [
+              "Quédate con tu backline; actúa como peel secundario contra asesinos.",
+              "Solo entra con ultimate confirmada (knock-up garantizado).",
+              "Recoge oleadas laterales seguras antes de objetivos para no llegar con menos oro."
+            ]
+          }
+        },
+        "late": {
+          "even": {
+            titulo: "Paciencia y ejecución",
+            puntos: [
+              "Espera el alcance de tu iniciador; no quemes la R primero.",
+              "Prioriza eliminar al tirador o mago sin Zhonya.",
+              "Coloca visión en flancos antes de barón/dragón anciano."
+            ]
+          },
+          "ahead": {
+            titulo: "Cierre de partida",
+            puntos: [
+              "Busca picks en niebla con tornado; fuerza Nashor con 1 kill.",
+              "Haz split si tienes GA; atraes 2-3 y tu equipo toma objetivos.",
+              "Controla oleadas dobles y sincroniza empujes antes de subir alto."
+            ]
+          },
+          "behind": {
+            titulo: "Defensa y contraataque",
+            puntos: [
+              "Defiende bajo torres; limpia con Q tornados y E entre súbditos.",
+              "Usa R defensiva para negar burst sobre tu ADC.",
+              "Compra GA/Ángel de la Guarda o Cortasendas para pelear desde atrás."
+            ]
+          }
+        }
+      },
+      "garen": {
+        "early": {
+          "even": {
+            titulo: "Tradeos cortos y sustain",
+            puntos: [
+              "Q para romper controles y entrar, E para daño, retírate antes de contraataque.",
+              "Aprovecha pasiva para recuperar vida; no pelees con la pasiva en enfriamiento.",
+              "Gestiona la oleada para que empuje hacia ti y facilite ganks aliados."
+            ]
+          },
+          "ahead": {
+            titulo: "Dominio de línea",
+            puntos: [
+              "Zonifica de la oleada y niega farmeo con amenaza de silenciar + R.",
+              "Fuerza dives con jungla cuando rival esté a 60% de vida o menos.",
+              "Placa tras placa; rota a heraldo tras empujar la wave."
+            ]
+          },
+          "behind": {
+            titulo: "Juego seguro",
+            puntos: [
+              "Farmea bajo torre; usa E para limpiar y Q para evitar engages.",
+              "Prioriza armadura/resistencia mágica según matchup.",
+              "No tomes 1v1 extendidos; espera a tu jungla."
+            ]
+          }
+        },
+        "mid": {
+          "even": {
+            titulo: "Picks y front-to-back",
+            puntos: [
+              "Busca objetivos blandos sin movilidad con Q silencio y ejecuta con R.",
+              "Mantente delante de tu backline absorbiendo enfriamientos rivales."
+            ]
+          },
+          "ahead": {
+            titulo: "Engage decisivo",
+            puntos: [
+              "Inicia en río/objetivos; tu tanqueo permite forzar peleas largas.",
+              "Divide empuje si nadie te baja 1v1; rota al equipo cuando falte 40s para objetivo."
+            ]
+          },
+          "behind": {
+            titulo: "Protección",
+            puntos: [
+              "Sé escudo para tu tirador; guarda Q para cortar engage enemigo.",
+              "Evita flanquear; mantén visión defensiva en entradas a tu jungla."
+            ]
+          }
+        },
+        "late": {
+          "even": {
+            titulo: "Ejecución de carries",
+            puntos: [
+              "Marca al carry enemigo sin movilidad; fuerzalo a comprar Zhonya/QSS.",
+              "No te separes de tu equipo en setups de Barón/Dragón Anciano."
+            ]
+          },
+          "ahead": {
+            titulo: "Cerrar con objetivos",
+            puntos: [
+              "Lidera la presión en side; llama a empuje sincronizado.",
+              "Si cazas a uno, fuerza Nashor y termina con súbditos potenciados."
+            ]
+          },
+          "behind": {
+            titulo: "Defensa disciplinada",
+            puntos: [
+              "Limpia oleadas con E; guarda R para rematar a asesinos que bucean.",
+              "Items tanque clave y posicionamiento delante de tu tirador."
+            ]
+          }
+        }
+      },
+      "ahri": {
+        "early": {
+          "even": {
+            titulo: "Oleada y presión con orbe",
+            puntos: [
+              "Empuja con Q y golpea al campeón al volver el orbe.",
+              "Amenaza con Encanto (E) cuando el rival vaya por el cañón.",
+              "W para trades cortos; juega a rango y con visión lateral."
+            ]
+          },
+          "ahead": {
+            titulo: "Roams letales",
+            puntos: [
+              "Empuja wave y gankea bot con definitiva disponible.",
+              "Controla visión en río y pixel; niega wards con oráculo.",
+              "Castiga a jungla enemigo con burst en su propia jungla."
+            ]
+          },
+          "behind": {
+            titulo: "Clear y seguridad",
+            puntos: [
+              "Prioriza limpiar con Q a distancia; evita pelear sin definitiva.",
+              "Compra Fajín si hay CC puntual que te caza.",
+              "Juega bajo visión; responde roams en lugar de iniciarlos."
+            ]
+          }
+        },
+        "mid": {
+          "even": {
+            titulo: "Pick potencial",
+            puntos: [
+              "Busca encantos desde niebla; convierte un pick en dragón/heraldo.",
+              "Acompaña a tu jungla a invadir solo con R disponible."
+            ]
+          },
+          "ahead": {
+            titulo: "Caza constante",
+            puntos: [
+              "Flanquea en mid con R para forzar destellos enemigos.",
+              "Amenaza side; nadie puede farmear seguro sin visión."
+            ]
+          },
+          "behind": {
+            titulo: "Utilidad y peel",
+            puntos: [
+              "Usa E defensivo para frenar asesinos.",
+              "Posiciónate como segunda línea; guarda R para reposicionarte."
+            ]
+          }
+        },
+        "late": {
+          "even": {
+            titulo: "Control de mago móvil",
+            puntos: [
+              "Orbe + Encanto al carry; si falla, espera enfriamientos.",
+              "Usa R para reposicionarte tras tu combo, no para entrar primero."
+            ]
+          },
+          "ahead": {
+            titulo: "Cierre por picks",
+            puntos: [
+              "Pesca a soportes sin destello; convierte en Nashor.",
+              "Presiona visión agresiva y juega sobre niebla."
+            ]
+          },
+          "behind": {
+            titulo: "Kite y supervivencia",
+            puntos: [
+              "Arma stasis (Reloj de Arena) si hay dive duro.",
+              "En teamfights, pega al objetivo más cercano y mantente con tu ADC."
+            ]
+          }
+        }
+      },
+      "lee sin": {
+        "early": {
+          "even": {
+            titulo: "Ruta eficiente y presión",
+            puntos: [
+              "Haz ruta 3 campamentos y gank nivel 3 si hay línea adelantada.",
+              "Wardea y salta (W) para escapar tras gank fallido.",
+              "Prioriza cangrejo con prioridad de lanes; no lo fuerces sin prio."
+            ]
+          },
+          "ahead": {
+            titulo: "Snowball en cadena",
+            puntos: [
+              "Repite ganks a la misma línea para tirar placas.",
+              "Invade jungla enemiga con prioridad; coloca wards profundos para futuras patadas (R).",
+              "Asegura heraldo y úsalo para abrir mid."
+            ]
+          },
+          "behind": {
+            titulo: "Utilidad y pick",
+            puntos: [
+              "Juega a patada-insec sobre carry enemigo usando flash + R.",
+              "Evita peleas 50/50 en objetivos; busca números ganados primero.",
+              "Farmea lo necesario para picos de poder (Garra/Cortasendas + botas)."
+            ]
+          }
+        },
+        "mid": {
+          "even": {
+            titulo: "Control de objetivos",
+            puntos: [
+              "Visión en entradas de río; prepara setup 30s antes de dragón.",
+              "Guarda salvaguarda (W) para salir de engages arriesgados."
+            ]
+          },
+          "ahead": {
+            titulo: "Forzar ventajas",
+            puntos: [
+              "Amenaza al tirador con patada a tu equipo.",
+              "Colapsa side rápidamente con tus líneas fuertes."
+            ]
+          },
+          "behind": {
+            titulo: "Soporte del carry",
+            puntos: [
+              "Protege a tu tirador con patada defensiva contra asesinos.",
+              "Juega a picks en niebla con control de visión, no a 5v5 frontales."
+            ]
+          }
+        },
+        "late": {
+          "even": {
+            titulo: "Utilidad de alto impacto",
+            puntos: [
+              "Tu valor es el insec: practica ángulos con ward + salto + R.",
+              "Si no hay ángulo, juega como offtank peel para tu backline."
+            ]
+          },
+          "ahead": {
+            titulo: "Terminar la partida",
+            puntos: [
+              "Caza al mid/adc sin destello y convierte en Nashor.",
+              "Flanquea desde niebla; evita iniciar de cara."
+            ]
+          },
+          "behind": {
+            titulo: "Plan B defensivo",
+            puntos: [
+              "Prioriza visión defensiva y contra-ganks.",
+              "No entres primero; guarda tus herramientas para desactivar al asesino rival."
+            ]
+          }
+        }
+      }
+    };
+
+    // ========= Utilidades UI =========
+    const input = document.getElementById('champion');
+    const fase = document.getElementById('fase');
+    const estado = document.getElementById('estado');
+    const btn = document.getElementById('buscar');
+    const out = document.getElementById('resultado');
+    const chips = document.getElementById('quick-chips');
+    const datalist = document.getElementById('champions-list');
+
+    // Popular datalist y chips rápidos
+    function refreshChampionList(){
+      datalist.innerHTML = "";
+      chips.innerHTML = "";
+      Object.keys(estrategias).forEach(name => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        datalist.appendChild(opt);
+        const chip = document.createElement('button');
+        chip.textContent = name.toUpperCase();
+        chip.className = 'chip';
+        chip.onclick = () => { input.value = name; buscar(); };
+        chips.appendChild(chip);
+      });
+    }
+    refreshChampionList();
+
+    function caseKey(c){ return c?.trim().toLowerCase(); }
+
+    function render(data, champKey){
+      const phaseMap = {early:"Early Game", mid:"Mid Game", late:"Late Game"};
+      const stateMap = {
+        ahead:'<span class="status-ahead">Vas Muy Bien</span>',
+        behind:'<span class="status-behind">Vas Muy Mal</span>',
+        even:'<span class="status-even">Partida Igualada</span>'
+      };
+      out.innerHTML = `
+        <h3>${champKey.toUpperCase()} — ${phaseMap[fase.value]} — ${stateMap[estado.value]}</h3>
+        <div class="row badge"><span>Objetivo:</span> <strong>${data.titulo}</strong></div>
+        <ol class="list">${data.puntos.map(p=>`<li>${p}</li>`).join("")}</ol>
+        <div class="hint">Tip: si no encuentras tu campeón, añade su estrategia en el objeto <code>estrategias</code>.</div>
+      `;
+    }
+
+    function buscar(){
+      const champKey = caseKey(input.value);
+      if(!champKey || !estrategias[champKey]){
+        out.innerHTML = '<div class="empty">No hay datos para este campeón aún. Añádelo en el objeto <code>estrategias</code> del código.</div>';
+        return;
+      }
+      const entry = estrategias[champKey]?.[fase.value]?.[estado.value];
+      if(!entry){
+        out.innerHTML = '<div class="empty">Fase/estado sin definir para este campeón. Completa sus casos en el objeto <code>estrategias</code>.</div>';
+        return;
+      }
+      render(entry, champKey);
+    }
+
+    // Eventos
+    btn.addEventListener('click', buscar);
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ buscar(); }});
+  </script>
+</body>
+</html>
