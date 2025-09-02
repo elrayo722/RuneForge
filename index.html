@@ -29,7 +29,7 @@
       gap: 10px;
       margin-bottom: 20px;
     }
-    input, select, button {
+    select, button {
       padding: 10px;
       border-radius: 8px;
       border: none;
@@ -56,7 +56,7 @@
   <header>Guía de Estrategia Interactiva - League of Legends</header>
   <main>
     <div class="input-section">
-      <input type="text" id="champion" placeholder="Escribe un campeón...">
+      <select id="champion"></select>
       <select id="fase">
         <option value="early">Early Game</option>
         <option value="mid">Mid Game</option>
@@ -71,7 +71,7 @@
     </div>
 
     <div class="resultado" id="resultado">
-      Escribe un campeón y selecciona fase + estado de la partida.
+      Selecciona un campeón, fase y estado de la partida.
     </div>
   </main>
 
@@ -110,8 +110,34 @@
           "ahead": "Puedes entrar solo y ser la primera línea. Forza peleas en objetivos.",
           "behind": "Tanquea y protege. No busques 1v1, solo utilidad."
         }
+      },
+      "nunu": {
+        "early": {
+          "even": "Farmea con cuidado y gankea con tu snowball. Controla dragones y visiona el río.",
+          "ahead": "Invade la jungla enemiga y asegura objetivos. Presiona lanes con tu snowball.",
+          "behind": "Juega defensivo, farmea en tu jungla y evita peleas riesgosas."
+        },
+        "mid": {
+          "even": "Rota para ayudar a tu equipo y usa ultimates en teamfights clave.",
+          "ahead": "Controla objetivos y crea presión constante en todas las lanes.",
+          "behind": "No arriesgues. Solo engagea si es seguro y protege tus carries."
+        },
+        "late": {
+          "even": "Sé un iniciador en peleas grupales y usa tu R para combos de teamfight.",
+          "ahead": "Divide push y fuerza peleas en objetivos importantes.",
+          "behind": "Mantente con tu equipo y usa R defensivamente para salvar aliados."
+        }
       }
     };
+
+    // Llenar el select de campeones automáticamente
+    const championSelect = document.getElementById("champion");
+    Object.keys(estrategias).forEach(champ => {
+      const option = document.createElement("option");
+      option.value = champ;
+      option.text = champ.charAt(0).toUpperCase() + champ.slice(1);
+      championSelect.appendChild(option);
+    });
 
     function buscar() {
       const champ = document.getElementById("champion").value.toLowerCase();
