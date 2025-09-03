@@ -77,208 +77,177 @@
 
   <script>
     const estrategias = {
-      "yasuo": {
+      // Campeones previos (Yasuo, Garen, etc.)
+      // ...
+
+      "jinx": {
         "early": {
-          "even": "Farmea con seguridad, busca tradeos cortos con Q. Evita gastar muro antes de nivel 3.",
-          "ahead": "Presiona agresivamente, congela oleada cerca de tu torre para denegar farm. Invade con tu jungla.",
-          "behind": "Juega bajo torre, solo farmea con Q. No uses E agresivamente o morirás fácil."
+          "even": "Farmea seguro con tu rango. Usa cohetes solo para poke cuando sea seguro.",
+          "ahead": "Abusa de tu rango y presión. Forza tradeos con tu support.",
+          "behind": "Juega defensiva bajo torre, farmea con cohetes y espera escalado."
         },
         "mid": {
-          "even": "Rota con tu jungla, busca teamfights donde puedas ultimar a varios enemigos.",
-          "ahead": "Divide push y obliga al equipo rival a responder. Puedes matar 1v2 si juegas bien.",
-          "behind": "Quédate con tu equipo y solo ultea en engages seguros. No splitpusees."
+          "even": "Participa en peleas, aporta DPS desde atrás. Usa tu ulti global para apoyar.",
+          "ahead": "Presiona líneas y toma torres con tu rango.",
+          "behind": "Quédate atrás, aporta DPS sin arriesgarte."
         },
         "late": {
-          "even": "Sé paciente, espera buen engage. Tu rol es deletear carries enemigos.",
-          "ahead": "Haz pick offs en la jungla. Puedes forzar peleas ya que tienes daño suficiente.",
-          "behind": "Juega como peel secundario: protege a tu ADC y busca ultimates defensivas."
+          "even": "Sé el hipercarry. Posiciónate bien y kitea.",
+          "ahead": "Zona con tu rango, forzando objetivos.",
+          "behind": "Protege tu vida, tu DPS puede remontar."
         }
       },
-      "garen": {
+      "thresh": {
         "early": {
-          "even": "Farmea tranquilo, usa Q+E para trades rápidos y retírate.",
-          "ahead": "Abusa de tu ventaja, fuerza dives con tu jungla y busca kills en solitario.",
-          "behind": "Mantente bajo torre y maximiza experiencia. No fuerces intercambios."
+          "even": "Busca hooks seguros y protege a tu ADC.",
+          "ahead": "Engagea agresivo, crea oportunidades de kills.",
+          "behind": "Juega defensivo, usa linterna para salvar a tu ADC."
         },
         "mid": {
-          "even": "Busca picks con Q+Silencio y R. No entres solo.",
-          "ahead": "Lidera las peleas. Tanquea para tu equipo y asesina carries con la R.",
-          "behind": "Quédate con tu ADC. Juega como frontline defensivo."
+          "even": "Controla visión y crea picks con tu hook.",
+          "ahead": "Inicia peleas y domina con CC.",
+          "behind": "Protege a tus carries y juega peel."
         },
         "late": {
-          "even": "Inicia junto a tu jungla. No te alejes del equipo.",
-          "ahead": "Puedes entrar solo y ser la primera línea. Forza peleas en objetivos.",
-          "behind": "Tanquea y protege. No busques 1v1, solo utilidad."
+          "even": "Sigue aportando CC y peel con linterna.",
+          "ahead": "Haz engages agresivos y controla el mapa.",
+          "behind": "Protege a tu ADC a toda costa."
         }
       },
-      "nunu": {
+      "katarina": {
         "early": {
-          "even": "Farmea con cuidado y gankea con tu snowball. Controla dragones y visiona el río.",
-          "ahead": "Invade la jungla enemiga y asegura objetivos. Presiona lanes con tu snowball.",
-          "behind": "Juega defensivo, farmea en tu jungla y evita peleas riesgosas."
+          "even": "Farmea seguro y no arriesgues antes de nivel 6.",
+          "ahead": "Busca resets y snowball con tus dagas.",
+          "behind": "Juega bajo torre, no entres en peleas riesgosas."
         },
         "mid": {
-          "even": "Rota para ayudar a tu equipo y usa ultimates en teamfights clave.",
-          "ahead": "Controla objetivos y crea presión constante en todas las lanes.",
-          "behind": "No arriesgues. Solo engagea si es seguro y protege tus carries."
+          "even": "Rota a otras líneas y busca teamfights con ulti.",
+          "ahead": "Forza peleas donde consigas resets rápidos.",
+          "behind": "Quédate con tu equipo y busca limpiar después de engages."
         },
         "late": {
-          "even": "Sé un iniciador en peleas grupales y usa tu R para combos de teamfight.",
-          "ahead": "Divide push y fuerza peleas en objetivos importantes.",
-          "behind": "Mantente con tu equipo y usa R defensivamente para salvar aliados."
+          "even": "Posiciónate bien, entra después del engage.",
+          "ahead": "Puedes iniciar y borrar al backline enemigo.",
+          "behind": "Sé paciente, entra solo si es seguro."
         }
       },
-      "trundle": {
+      "malphite": {
         "early": {
-          "even": "Farmea y usa Q para robar stats del enemigo. Gankea cuando tu jungla lo ayude.",
-          "ahead": "Presiona agresivamente, invade jungla enemiga y fuerza intercambios favorables.",
-          "behind": "Juega bajo torre, farmea con seguridad y evita peleas riesgosas."
-        },
-        "mid": {
-          "even": "Roba stats de tanques enemigos antes de teamfights. Coordina engages con tu equipo.",
-          "ahead": "Divide push y fuerza peleas 1v2 o 2v3 aprovechando tu ventaja.",
-          "behind": "Quédate con tu equipo, usa tu R defensivamente y participa solo en fights seguros."
-        },
-        "late": {
-          "even": "Sé útil en peleas grupales robando stats del frontline enemigo y asegurando objetivos.",
-          "ahead": "Puedes iniciar peleas y splitpush para forzar al equipo enemigo a responder.",
-          "behind": "Mantente con tu equipo y protege a tus carries usando tu R y control de objetivos."
-        }
-      },
-      "senna": {
-        "early": {
-          "even": "Farmea almas desde la backline y poke con Q. Evita trades largos sin tu support.",
-          "ahead": "Abusa de tu rango y poke constante. Controla el río con visión.",
-          "behind": "Juega defensiva, quédate atrás y solo farmea almas cuando sea seguro."
-        },
-        "mid": {
-          "even": "Aporta daño y utilidad en teamfights con tu R global y curaciones.",
-          "ahead": "Presiona con tu rango y lidera peleas en objetivos. Usa W para atrapar enemigos.",
-          "behind": "Quédate con tu equipo, usa tu R para salvar aliados y aporta poke desde atrás."
-        },
-        "late": {
-          "even": "Sé el carry de daño a distancia y usa tu curación constantemente.",
-          "ahead": "Zona con tu rango y fuerza peleas en torno a objetivos. Eres clave en DPS.",
-          "behind": "Mantente seguro, protege a tu equipo y confía en tu rango para desgastar."
-        }
-      },
-      "aatrox": {
-        "early": {
-          "even": "Farmea seguro y busca trades con tu Q cuando el enemigo esté mal posicionado.",
-          "ahead": "Abusa de tu sustain y presión. Forza peleas extendidas donde dominas.",
-          "behind": "Juega bajo torre, aprovecha tu sustain para no quedarte fuera de la partida."
-        },
-        "mid": {
-          "even": "Rota a peleas y usa tu definitiva en teamfights largas.",
-          "ahead": "Divide push y fuerza 1v2. Tu sustain te permite ganar escaramuzas.",
-          "behind": "Quédate con tu equipo y usa tu R para peel o contraengage."
-        },
-        "late": {
-          "even": "Tu rol es entrar al backline y molestar a los carries. Aprovecha tu sustain.",
-          "ahead": "Puedes iniciar y forzar peleas largas. Eres muy difícil de matar.",
-          "behind": "Juega defensivo, usa tu R para proteger y zonear."
-        }
-      },
-      "aurora": {
-        "early": {
-          "even": "Farmea con autoataques y pokeo. Juega con cuidado, no te sobreexpongas.",
-          "ahead": "Abusa de tu rango y poke constante. Presiona al rival y saca placas.",
-          "behind": "Juega defensiva bajo torre y farmea lo que puedas."
-        },
-        "mid": {
-          "even": "Participa en peleas de equipo, aporta poke y control desde la distancia.",
-          "ahead": "Controla visión y lidera engages desde la backline.",
-          "behind": "Quédate con tu equipo, juega a poke y aporta utilidad."
-        },
-        "late": {
-          "even": "Tu DPS y poke son claves. Mantente seguro y haz daño desde atrás.",
-          "ahead": "Zona al equipo enemigo y asegura objetivos con tu poke.",
-          "behind": "Concéntrate en sobrevivir y aportar daño/cc desde lejos."
-        }
-      },
-      "ahri": {
-        "early": {
-          "even": "Farmea con Q y busca poke seguro. No te sobreexpongas antes de nivel 6.",
-          "ahead": "Abusa de tu movilidad y busca kills en otras líneas.",
-          "behind": "Quédate bajo torre y farmea con Q, no arriesgues."
-        },
-        "mid": {
-          "even": "Rota con tu definitiva y crea presión en el mapa.",
-          "ahead": "Forza peleas y busca picks con tu charm.",
-          "behind": "Juega en torno a tu equipo y aporta CC desde atrás."
-        },
-        "late": {
-          "even": "Aporta burst y CC en teamfights. Juega paciente.",
-          "ahead": "Haz picks en la jungla y termina la partida.",
-          "behind": "Protege a tu ADC y juega a peel defensivo."
-        }
-      },
-      "darius": {
-        "early": {
-          "even": "Farmea seguro y busca trades cortos con Q y autoataques.",
-          "ahead": "Presiona fuerte y busca snowball con tu R.",
-          "behind": "Mantente bajo torre y juega seguro."
-        },
-        "mid": {
-          "even": "Rota y ayuda en peleas con tu R ejecutando carries.",
-          "ahead": "Divide push y fuerza 1v2, puedes ganar.",
-          "behind": "Quédate con tu equipo y usa tu R solo en engages seguros."
-        },
-        "late": {
-          "even": "Eres amenaza en peleas largas. Juega frontline.",
-          "ahead": "Entra agresivo y deletea al ADC con tu R.",
-          "behind": "Protege a tu equipo y no te aisles."
-        }
-      },
-      "leesin": {
-        "early": {
-          "even": "Farmea jungla y busca ganks rápidos con Q+Ward Jump.",
-          "ahead": "Invade y domina la jungla enemiga. Presiona en todo el mapa.",
-          "behind": "Farmea y busca solo ganks seguros."
-        },
-        "mid": {
-          "even": "Busca jugadas de Insec y picks en objetivos.",
-          "ahead": "Controla visión y snowballea aún más.",
-          "behind": "Quédate con tu equipo y aporta CC con tu R."
-        },
-        "late": {
-          "even": "Tu rol es peel o pick. Juega inteligente.",
-          "ahead": "Forza jugadas agresivas y saca ventaja.",
-          "behind": "Protege a tus carries y aporta CC."
-        }
-      },
-      "ezreal": {
-        "early": {
-          "even": "Farmea con Q desde lejos. Juega seguro.",
-          "ahead": "Abusa del poke constante y controla el río.",
+          "even": "Farmea con Q y juega defensivo.",
+          "ahead": "Presiona fuerte y busca trades con tu R cuando subas de nivel.",
           "behind": "Quédate bajo torre y farmea con Q."
         },
         "mid": {
-          "even": "Participa en peleas con poke y ulti global.",
-          "ahead": "Zona al enemigo y controla objetivos.",
-          "behind": "Quédate atrás y juega a poke seguro."
+          "even": "Tu R es clave en teamfights, úsala con tu equipo.",
+          "ahead": "Forza peleas con engages agresivos.",
+          "behind": "Juega defensivo y espera a que tu R sea decisiva."
         },
         "late": {
-          "even": "Haz DPS constante desde la backline.",
-          "ahead": "Asegura peleas con poke antes de objetivos.",
-          "behind": "Mantente a salvo y poke desde la distancia."
+          "even": "Inicia peleas con tu R, eres frontline.",
+          "ahead": "Forza peleas en objetivos, tu engage decide partidas.",
+          "behind": "Sé patient y ultea defensivamente."
         }
       },
-      "leona": {
+      "riven": {
         "early": {
-          "even": "Juega defensiva hasta nivel 2. Luego busca engages.",
-          "ahead": "Engagea agresivo y saca ventaja para tu ADC.",
-          "behind": "Quédate bajo torre y protege al ADC."
+          "even": "Farmea y busca pequeños trades con combos.",
+          "ahead": "Abusa de tu movilidad y fuerza 1v1.",
+          "behind": "Juega defensiva y espera objetos."
         },
         "mid": {
-          "even": "Inicia peleas con tu R en objetivos.",
-          "ahead": "Forza engages y lidera peleas.",
-          "behind": "Protege a tus carries y no te aisles."
+          "even": "Rota y busca picks en la jungla.",
+          "ahead": "Splitpushea y fuerza 1v2.",
+          "behind": "Quédate con tu equipo y aporta CC."
         },
         "late": {
-          "even": "Sé frontline y crea engages con tu CC.",
-          "ahead": "Forza peleas y lidera a tu equipo a objetivos.",
-          "behind": "Juega peel y protege al ADC."
+          "even": "Eres asesina, busca flancos.",
+          "ahead": "Puedes iniciar y deletear al ADC.",
+          "behind": "Protege a tu equipo y juega defensiva."
+        }
+      },
+      "zed": {
+        "early": {
+          "even": "Farmea y poke con Q. Juega seguro hasta nivel 6.",
+          "ahead": "Busca kills en mid y otras líneas.",
+          "behind": "Farmea y evita muertes innecesarias."
+        },
+        "mid": {
+          "even": "Haz picks con tu ulti en carries blandos.",
+          "ahead": "Forza peleas y domina el mapa.",
+          "behind": "Quédate con tu equipo y busca solo kills seguras."
+        },
+        "late": {
+          "even": "Tu rol es asesinar al ADC o mago rival.",
+          "ahead": "Haz picks antes de peleas grandes.",
+          "behind": "Juega a poke y sé paciente con tu ulti."
+        }
+      },
+      "morgana": {
+        "early": {
+          "even": "Farmea con W y poke con Q. Usa escudo en engages.",
+          "ahead": "Abusa de poke y control de visión.",
+          "behind": "Quédate atrás y usa escudo para proteger."
+        },
+        "mid": {
+          "even": "Aporta CC y escudos en peleas.",
+          "ahead": "Controla objetivos con Q y W.",
+          "behind": "Juega defensivo y aporta utilidad."
+        },
+        "late": {
+          "even": "Tu CC es clave. Usa R en peleas grupales.",
+          "ahead": "Zonas con tu W y escudos.",
+          "behind": "Mantente con tu ADC y protege."
+        }
+      },
+      "vayne": {
+        "early": {
+          "even": "Farmea seguro y evita trades largos.",
+          "ahead": "Abusa de tus mecánicas y busca kills.",
+          "behind": "Juega bajo torre, escala con farm."
+        },
+        "mid": {
+          "even": "Haz DPS en peleas, kiteando bien.",
+          "ahead": "Splitpushea y gana 1v1.",
+          "behind": "Quédate atrás y aporta daño seguro."
+        },
+        "late": {
+          "even": "Eres hipercarry. Juega con cuidado y kitea.",
+          "ahead": "Deletea frontline y backline.",
+          "behind": "Protégete y juega a peel."
+        }
+      },
+      "volibear": {
+        "early": {
+          "even": "Farmea y busca tradeos cortos con tu pasiva.",
+          "ahead": "Presiona agresivo y divea con tu R.",
+          "behind": "Juega defensivo bajo torre."
+        },
+        "mid": {
+          "even": "Rota y ayuda en peleas con tu engage.",
+          "ahead": "Inicia peleas agresivas en objetivos.",
+          "behind": "Quédate con tu equipo y aporta frontline."
+        },
+        "late": {
+          "even": "Sé frontline y aporta CC.",
+          "ahead": "Forza peleas con tu R.",
+          "behind": "Juega defensivo y protege a tus carries."
+        }
+      },
+      "lulu": {
+        "early": {
+          "even": "Farmea almas de support y pokea con tu rango.",
+          "ahead": "Abusa de tu poke y protege al ADC.",
+          "behind": "Juega defensivo y mantén vivo a tu ADC."
+        },
+        "mid": {
+          "even": "Usa tus escudos y ulti para salvar a tu carry.",
+          "ahead": "Aporta utilidad y control en peleas.",
+          "behind": "Quédate con tu ADC y protege siempre."
+        },
+        "late": {
+          "even": "Tu utilidad es clave, juega pegada a tu carry.",
+          "ahead": "Potencia al hypercarry con buffs.",
+          "behind": "Concéntrate en peel y mantener vivos a tus carries."
         }
       }
     };
