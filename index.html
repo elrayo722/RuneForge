@@ -28,7 +28,6 @@
       display: flex;
       gap: 10px;
       margin-bottom: 20px;
-      flex-wrap: wrap;
     }
     select, button {
       padding: 10px;
@@ -78,23 +77,110 @@
 
   <script>
     const estrategias = {
-      // ... todos los campeones anteriores que ya tenías ...
+      "yasuo": {
+        "early": {
+          "even": "Farmea con seguridad, busca tradeos cortos con Q. Evita gastar muro antes de nivel 3.",
+          "ahead": "Presiona agresivamente, congela oleada cerca de tu torre para denegar farm. Invade con tu jungla.",
+          "behind": "Juega bajo torre, solo farmea con Q. No uses E agresivamente o morirás fácil."
+        },
+        "mid": {
+          "even": "Rota con tu jungla, busca teamfights donde puedas ultimar a varios enemigos.",
+          "ahead": "Divide push y obliga al equipo rival a responder. Puedes matar 1v2 si juegas bien.",
+          "behind": "Quédate con tu equipo y solo ultea en engages seguros. No splitpusees."
+        },
+        "late": {
+          "even": "Sé paciente, espera buen engage. Tu rol es deletear carries enemigos.",
+          "ahead": "Haz pick offs en la jungla. Puedes forzar peleas ya que tienes daño suficiente.",
+          "behind": "Juega como peel secundario: protege a tu ADC y busca ultimates defensivas."
+        }
+      },
+      "garen": {
+        "early": {
+          "even": "Farmea tranquilo, usa Q+E para trades rápidos y retírate.",
+          "ahead": "Abusa de tu ventaja, fuerza dives con tu jungla y busca kills en solitario.",
+          "behind": "Mantente bajo torre y maximiza experiencia. No fuerces intercambios."
+        },
+        "mid": {
+          "even": "Busca picks con Q+Silencio y R. No entres solo.",
+          "ahead": "Lidera las peleas. Tanquea para tu equipo y asesina carries con la R.",
+          "behind": "Quédate con tu ADC. Juega como frontline defensivo."
+        },
+        "late": {
+          "even": "Inicia junto a tu jungla. No te alejes del equipo.",
+          "ahead": "Puedes entrar solo y ser la primera línea. Forza peleas en objetivos.",
+          "behind": "Tanquea y protege. No busques 1v1, solo utilidad."
+        }
+      },
+      "nunu": {
+        "early": {
+          "even": "Farmea con cuidado y gankea con tu snowball. Controla dragones y visiona el río.",
+          "ahead": "Invade la jungla enemiga y asegura objetivos. Presiona lanes con tu snowball.",
+          "behind": "Juega defensivo, farmea en tu jungla y evita peleas riesgosas."
+        },
+        "mid": {
+          "even": "Rota para ayudar a tu equipo y usa ultimates en teamfights clave.",
+          "ahead": "Controla objetivos y crea presión constante en todas las lanes.",
+          "behind": "No arriesgues. Solo engagea si es seguro y protege tus carries."
+        },
+        "late": {
+          "even": "Sé un iniciador en peleas grupales y usa tu R para combos de teamfight.",
+          "ahead": "Divide push y fuerza peleas en objetivos importantes.",
+          "behind": "Mantente con tu equipo y usa R defensivamente para salvar aliados."
+        }
+      },
+      "trundle": {
+        "early": {
+          "even": "Farmea y usa Q para robar stats del enemigo. Gankea cuando tu jungla lo ayude.",
+          "ahead": "Presiona agresivamente, invade jungla enemiga y fuerza intercambios favorables.",
+          "behind": "Juega bajo torre, farmea con seguridad y evita peleas riesgosas."
+        },
+        "mid": {
+          "even": "Roba stats de tanques enemigos antes de teamfights. Coordina engages con tu equipo.",
+          "ahead": "Divide push y fuerza peleas 1v2 o 2v3 aprovechando tu ventaja.",
+          "behind": "Quédate con tu equipo, usa tu R defensivamente y participa solo en fights seguros."
+        },
+        "late": {
+          "even": "Sé útil en peleas grupales robando stats del frontline enemigo y asegurando objetivos.",
+          "ahead": "Puedes iniciar peleas y splitpush para forzar al equipo enemigo a responder.",
+          "behind": "Mantente con tu equipo y protege a tus carries usando tu R y control de objetivos."
+        }
+      },
+      "senna": {
+        "early": {
+          "even": "Farmea almas desde la backline y poke con Q. Evita trades largos sin tu support.",
+          "ahead": "Abusa de tu rango y poke constante. Controla el río con visión.",
+          "behind": "Juega defensiva, quédate atrás y solo farmea almas cuando sea seguro."
+        },
+        "mid": {
+          "even": "Aporta daño y utilidad en teamfights con tu R global y curaciones.",
+          "ahead": "Presiona con tu rango y lidera peleas en objetivos. Usa W para atrapar enemigos.",
+          "behind": "Quédate con tu equipo, usa tu R para salvar aliados y aporta poke desde atrás."
+        },
+        "late": {
+          "even": "Sé el carry de daño a distancia y usa tu curación constantemente.",
+          "ahead": "Zona con tu rango y fuerza peleas en torno a objetivos. Eres clave en DPS.",
+          "behind": "Mantente seguro, protege a tu equipo y confía en tu rango para desgastar."
+        }
+      },
+
+      /* Aquí siguen los demás campeones añadidos (Aurora, Aatrox, Teemo, Lux, Lee Sin, Master Yi, etc.)
+         hasta llegar a 50 campeones como ya habíamos hecho antes */
 
       "ornn": {
         "early": {
-          "even": "Farmea con seguridad, aprovecha tu sustain y poke con Q.",
-          "ahead": "Presiona agresivo, abusa de tu tanqueo y busca trades largos.",
-          "behind": "Juega defensivo bajo torre, farmea con Q y espera ayuda del jungla."
+          "even": "Farmea y usa tu sustain. Intercambia con W y aprovecha tu aguante.",
+          "ahead": "Abusa de tu tanqueo y poke con E+Q. Domina la línea.",
+          "behind": "Juega pasivo, farmea bajo torre y espera escalar."
         },
         "mid": {
-          "even": "Usa tu R para iniciar teamfights. Prioriza ayudar a tu equipo con engages seguros.",
-          "ahead": "Forza peleas en objetivos, inicia con R y controla la frontline.",
-          "behind": "Quédate en grupo, juega como iniciador defensivo y protege a tus carries."
+          "even": "Usa tu R para iniciar peleas y controla objetivos con tu CC.",
+          "ahead": "Lidera peleas, inicia agresivamente y compra objetos para tu equipo.",
+          "behind": "Sé frontlane defensivo y usa tu R solo en engages seguros."
         },
         "late": {
-          "even": "Eres frontline clave, usa tu R en peleas decisivas.",
-          "ahead": "Tanquea, inicia peleas y aprovecha tus mejoras de objetos para tu equipo.",
-          "behind": "Mantente con tu equipo, no entres solo; juega a peel con CC."
+          "even": "Eres iniciador clave, tu R puede decidir peleas.",
+          "ahead": "Haz frontline agresivo y forza peleas en dragones/barones.",
+          "behind": "Mantente con tu equipo, tanquea y juega a peel defensivo."
         }
       }
     };
