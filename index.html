@@ -116,4 +116,29 @@
       "masteryi":{"early":{"even":"Farmea jungla eficiente.","ahead":"Invade y gankea.","behind":"Evita luchas; escala."},"mid":{"even":"Busca picks en side.","ahead":"Splitpush agresivo.","behind":"Grupo para objetivos."},"late":{"even":"Limpiador de peleas.","ahead":"Forza Nashor/Dragón.","behind":"Entra tarde con R/E."}},
       "nasus":{"early":{"even":"Farmea Q; no fuerces.","ahead":"Tradea con R si es necesario.","behind":"Bajo torre y stackea."},"mid":{"even":"Splitpush.","ahead":"Toma torres rápido.","behind":"Quédate con equipo."},"late":{"even":"Frontline con Q gigante.","ahead":"Empuja sides.","behind":"Protege backline."}},
       "olaf":{"early":{"even":"Trades con hachas.","ahead":"Divea con R.","behind":"Farmea y espera picos."},"mid":{"even":"Objetivos y escaramuzas.","ahead":"Inicia sin miedo.","behind":"Grupo y frontline."},"late":{"even":"Amenaza al carry con R.","ahead":"Fuerza peleas.","behind":"Protege si falta engage."}},
-      "seraphine":{"early":{"even":"Pokea y cura desde atrás.","ahead":"Empuja y rota.","behind":"Juega defensivo."},"mid":{"even":"R de iniciación/l
+      "seraphine":{"early":{"even":"Pokea y cura desde atrás.","ahead":"Empuja y rota.","behind":"Juega defensivo."},"mid":{"even":"R de iniciación/larga distancia.","ahead":"Control de objetivos.","behind":"Peel y utilidad."},"late":{"even":"Zona y curas.","ahead":"Forza peleas agrupadas.","behind":"Mantente con equipo."}},
+      "shen":{"early":{"even":"Farmea con Q.","ahead":"Presiona y usa R global.","behind":"Juega defensivo."},"mid":{"even":"R clave para side lanes.","ahead":"Splitpush y global.","behind":"Protege con R."},"late":{"even":"Frontline y R salvadora.","ahead":"Splitpush con presión.","behind":"Peel."}},
+      "singed":{"early":{"even":"Farmea proxys.","ahead":"Abusa de proxy.","behind":"Farmea seguro."},"mid":{"even":"Zona y split.","ahead":"Forza errores.","behind":"Grupo."},"late":{"even":"Molesta backline.","ahead":"Crea caos.","behind":"Frontline secundario."}},
+      "sylas":{"early":{"even":"Farmea y roba ultis.","ahead":"Agresivo en trades.","behind":"Safe bajo torre."},"mid":{"even":"Usa ultis clave.","ahead":"Snowball.","behind":"Grupo."},"late":{"even":"Roba ultis fuertes.","ahead":"Amenaza carries.","behind":"Peel."}},
+      "ornn":{"early":{"even":"Farmea y escala objetos.","ahead":"Presiona con sustain y tradea con W.","behind":"Farmea bajo torre y juega safe."},"mid":{"even":"Frontline sólido, inicia con R.","ahead":"Control de objetivos y engages.","behind":"Proporciona utilidad y peel."},"late":{"even":"Eres iniciador clave con tu R.","ahead":"Tanquea y lidera peleas.","behind":"Usa tu CC para proteger a los carries."}}
+    };
+
+    const champSelect = document.getElementById("champion");
+    Object.keys(estrategias).forEach(champ => {
+      const option = document.createElement("option");
+      option.value = champ;
+      option.textContent = champ.charAt(0).toUpperCase() + champ.slice(1);
+      champSelect.appendChild(option);
+    });
+
+    function buscar() {
+      const champ = document.getElementById("champion").value;
+      const fase = document.getElementById("fase").value;
+      const estado = document.getElementById("estado").value;
+
+      const resultado = estrategias[champ][fase][estado];
+      document.getElementById("resultado").innerText = resultado;
+    }
+  </script>
+</body>
+</html>
