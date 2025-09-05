@@ -2,235 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Guía Interactiva LoL</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #111;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 2px solid #222;
-    }
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-    .input-section {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    select, button {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 14px;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    .resultado {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-      min-height: 100px;
-    }
-  </style>
+  <title>Estrategias LoL</title>
 </head>
 <body>
-  <header>Guía de Estrategia Interactiva - League of Legends</header>
-  <main>
-    <div class="input-section">
-      <select id="champion"></select>
-      <select id="fase">
-        <option value="early">Early Game</option>
-        <option value="mid">Mid Game</option>
-        <option value="late">Late Game</option>
-      </select>
-      <select id="estado">
-        <option value="even">Partida Igualada</option>
-        <option value="ahead">Vas Muy Bien</option>
-        <option value="behind">Vas Muy Mal</option>
-      </select>
-      <button onclick="buscar()">Buscar</button>
-    </div>
+  <h1>Buscador de Estrategias de Campeones</h1>
 
-    <div class="resultado" id="resultado">
-      Selecciona un campeón, fase y estado de la partida.
-    </div>
-  </main>
+  <label for="champion">Selecciona un campeón:</label>
+  <select id="champion"></select>
+
+  <label for="fase">Selecciona la fase:</label>
+  <select id="fase">
+    <option value="early">Early</option>
+    <option value="mid">Mid</option>
+    <option value="late">Late</option>
+  </select>
+
+  <label for="estado">Selecciona el estado:</label>
+  <select id="estado">
+    <option value="even">Even</option>
+    <option value="ahead">Ahead</option>
+    <option value="behind">Behind</option>
+  </select>
+
+  <button onclick="buscar()">Buscar Estrategia</button>
+
+  <p id="resultado"></p>
 
   <script>
     const estrategias = {
-      "yasuo": {
-        "early": {
-          "even": "Farmea con seguridad, busca tradeos cortos con Q. Evita gastar muro antes de nivel 3.",
-          "ahead": "Presiona agresivamente, congela oleada cerca de tu torre para denegar farm. Invade con tu jungla.",
-          "behind": "Juega bajo torre, solo farmea con Q. No uses E agresivamente o morirás fácil."
-        },
-        "mid": {
-          "even": "Rota con tu jungla, busca teamfights donde puedas ultimar a varios enemigos.",
-          "ahead": "Divide push y obliga al equipo rival a responder. Puedes matar 1v2 si juegas bien.",
-          "behind": "Quédate con tu equipo y solo ultea en engages seguros. No splitpusees."
-        },
-        "late": {
-          "even": "Sé paciente, espera buen engage. Tu rol es deletear carries enemigos.",
-          "ahead": "Haz pick offs en la jungla. Puedes forzar peleas ya que tienes daño suficiente.",
-          "behind": "Juega como peel secundario: protege a tu ADC y busca ultimates defensivas."
-        }
-      },
-      "garen": {
-        "early": {
-          "even": "Farmea tranquilo, usa Q+E para trades rápidos y retírate.",
-          "ahead": "Abusa de tu ventaja, fuerza dives con tu jungla y busca kills en solitario.",
-          "behind": "Mantente bajo torre y maximiza experiencia. No fuerces intercambios."
-        },
-        "mid": {
-          "even": "Busca picks con Q+Silencio y R. No entres solo.",
-          "ahead": "Lidera las peleas. Tanquea para tu equipo y asesina carries con la R.",
-          "behind": "Quédate con tu ADC. Juega como frontline defensivo."
-        },
-        "late": {
-          "even": "Inicia junto a tu jungla. No te alejes del equipo.",
-          "ahead": "Puedes entrar solo y ser la primera línea. Forza peleas en objetivos.",
-          "behind": "Tanquea y protege. No busques 1v1, solo utilidad."
-        }
-      },
-      "nunu": {
-        "early": {
-          "even": "Farmea con cuidado y gankea con tu snowball. Controla dragones y visiona el río.",
-          "ahead": "Invade la jungla enemiga y asegura objetivos. Presiona lanes con tu snowball.",
-          "behind": "Juega defensivo, farmea en tu jungla y evita peleas riesgosas."
-        },
-        "mid": {
-          "even": "Rota para ayudar a tu equipo y usa ultimates en teamfights clave.",
-          "ahead": "Controla objetivos y crea presión constante en todas las lanes.",
-          "behind": "No arriesgues. Solo engagea si es seguro y protege tus carries."
-        },
-        "late": {
-          "even": "Sé un iniciador en peleas grupales y usa tu R para combos de teamfight.",
-          "ahead": "Divide push y fuerza peleas en objetivos importantes.",
-          "behind": "Mantente con tu equipo y usa R defensivamente para salvar aliados."
-        }
-      },
-      "trundle": {
-        "early": {
-          "even": "Farmea y usa Q para robar stats del enemigo. Gankea cuando tu jungla lo ayude.",
-          "ahead": "Presiona agresivamente, invade jungla enemiga y fuerza intercambios favorables.",
-          "behind": "Juega bajo torre, farmea con seguridad y evita peleas riesgosas."
-        },
-        "mid": {
-          "even": "Roba stats de tanques enemigos antes de teamfights. Coordina engages con tu equipo.",
-          "ahead": "Divide push y fuerza peleas 1v2 o 2v3 aprovechando tu ventaja.",
-          "behind": "Quédate con tu equipo, usa tu R defensivamente y participa solo en fights seguros."
-        },
-        "late": {
-          "even": "Sé útil en peleas grupales robando stats del frontline enemigo y asegurando objetivos.",
-          "ahead": "Puedes iniciar peleas y splitpush para forzar al equipo enemigo a responder.",
-          "behind": "Mantente con tu equipo y protege a tus carries usando tu R y control de objetivos."
-        }
-      },
-      "senna": {
-        "early": {
-          "even": "Farmea almas desde la backline y poke con Q. Evita trades largos sin tu support.",
-          "ahead": "Abusa de tu rango y poke constante. Controla el río con visión.",
-          "behind": "Juega defensiva, quédate atrás y solo farmea almas cuando sea seguro."
-        },
-        "mid": {
-          "even": "Aporta daño y utilidad en teamfights con tu R global y curaciones.",
-          "ahead": "Presiona con tu rango y lidera peleas en objetivos. Usa W para atrapar enemigos.",
-          "behind": "Quédate con tu equipo, usa tu R para salvar aliados y aporta poke desde atrás."
-        },
-        "late": {
-          "even": "Sé el carry de daño a distancia y usa tu curación constantemente.",
-          "ahead": "Zona con tu rango y fuerza peleas en torno a objetivos. Eres clave en DPS.",
-          "behind": "Mantente seguro, protege a tu equipo y confía en tu rango para desgastar."
-        }
-      },
-      "aatrox": {
-        "early": {
-          "even": "Juega con trades cortos usando Q y sustain.",
-          "ahead": "Presiona agresivo, fuerza dives y busca snowball.",
-          "behind": "Juega bajo torre y espera tu pico de poder."
-        },
-        "mid": {
-          "even": "Apoya en escaramuzas y usa tu R en peleas clave.",
-          "ahead": "Puedes 1v2 fácilmente, splitpushea.",
-          "behind": "Quédate en grupo, aporta sustain en teamfights."
-        },
-        "late": {
-          "even": "Eres frontline con sustain, busca engages largos.",
-          "ahead": "Splitpush y forzar objetivos.",
-          "behind": "Juega a peel y sustain defensivo."
-        }
-      },
-      "aurora": {
-        "early": {
-          "even": "Mantente segura y poke desde la distancia.",
-          "ahead": "Presiona y niega farm al rival.",
-          "behind": "Juega bajo torre y escala."
-        },
-        "mid": {
-          "even": "Aporta poke y utilidad en peleas.",
-          "ahead": "Forza objetivos y fights con tu ventaja.",
-          "behind": "Quédate atrás y juega defensivo."
-        },
-        "late": {
-          "even": "Escala y aporta DPS desde backline.",
-          "ahead": "Zona y lidera peleas.",
-          "behind": "Juega peel y utilidad."
-        }
-      },
-      // ... AQUÍ van todos los demás hasta Ornn (los 50 que ya tenías) ...
-      "ornn": {
-        "early": {
-          "even": "Farmea y escala objetos.",
-          "ahead": "Presiona con sustain y tradea con W.",
-          "behind": "Farmea bajo torre y juega safe."
-        },
-        "mid": {
-          "even": "Frontline sólido, inicia con R.",
-          "ahead": "Controla objetivos y engages.",
-          "behind": "Proporciona utilidad y peel."
-        },
-        "late": {
-          "even": "Eres iniciador clave con tu R.",
-          "ahead": "Tanquea y lidera peleas.",
-          "behind": "Usa tu CC para proteger a los carries."
-        }
-      },
-      "pantheon": {
-        "early": {
-          "even": "Farmea y busca trades cortos con Q+W.",
-          "ahead": "Abusa de tu burst, fuerza kills y rota.",
-          "behind": "Juega defensivo bajo torre y espera nivel 6."
-        },
-        "mid": {
-          "even": "Usa tu R para impactar otras líneas y crear ventaja.",
-          "ahead": "Splitpushea y busca peleas 1v1 o engages rápidos.",
-          "behind": "Quédate con tu equipo y aporta CC con tu W."
-        },
-        "late": {
-          "even": "Aporta engage y peel en teamfights.",
-          "ahead": "Forza peleas rápidas con tu combo y R global.",
-          "behind": "Juega como iniciador secundario y protege a tus carries."
-        }
-      }
+      "yasuo":{"early":{"even":"Farmea seguro con Q y evita muertes.","ahead":"Presiona y busca duelos 1v1.","behind":"Juega bajo torre, espera escalado."},"mid":{"even":"Splitpush en side lane.","ahead":"Busca picks agresivos.","behind":"Quédate con el equipo."},"late":{"even":"Usa ulti en combos de equipo.","ahead":"Carrilea peleas.","behind":"Protégete y aporta DPS."}},
+      "garen":{"early":{"even":"Farmea con pasiva.","ahead":"Abusa con Q+E.","behind":"Farmea bajo torre."},"mid":{"even":"Busca picks con R.","ahead":"Splitpush.","behind":"Juega defensivo."},"late":{"even":"Frontline con sustain.","ahead":"Amenaza carries.","behind":"Peel y utilidad."}},
+      "nunu":{"early":{"even":"Junglear seguro.","ahead":"Invade y gankea mucho.","behind":"Mantente en objetivos."},"mid":{"even":"Dragones y Heraldo.","ahead":"Forza peleas.","behind":"Defiende y busca picks."},"late":{"even":"Zonificación con R.","ahead":"Engagea y controla.","behind":"Peel para tu equipo."}},
+      "lee sin":{"early":{"even":"Busca ganks rápidos.","ahead":"Invade y presiona.","behind":"Farmea jungla."},"mid":{"even":"Inicios con Insec.","ahead":"Busca jugadas agresivas.","behind":"Apoya en peleas."},"late":{"even":"Kick en carries.","ahead":"Juega agresivo.","behind":"Protege backline."}},
+      "zed":{"early":{"even":"Farmea y busca poke.","ahead":"All-in con nivel 6.","behind":"Juega seguro."},"mid":{"even":"Splitpush fuerte.","ahead":"Busca asesinatos.","behind":"Farma side."},"late":{"even":"Amenaza backline.","ahead":"Elimina carries.","behind":"Split discreto."}},
+      "ahri":{"early":{"even":"Farmea con Q.","ahead":"Presiona y gankea.","behind":"Juega bajo torre."},"mid":{"even":"Busca picks con charm.","ahead":"Rota agresivo.","behind":"Farmea seguro."},"late":{"even":"Control de zona.","ahead":"Elimina backline.","behind":"Apoya a tu equipo."}},
+      "annie":{"early":{"even":"Farmea con Q.","ahead":"All-in con stun.","behind":"Farmea torre."},"mid":{"even":"Busca ultis en área.","ahead":"Engagea.","behind":"Apoya peleas."},"late":{"even":"Zona con stun.","ahead":"Wombo-combo.","behind":"Juega safe."}},
+      "fiora":{"early":{"even":"Farmea y tradea.","ahead":"Abusa 1v1.","behind":"Juega pasiva."},"mid":{"even":"Splitpush imparable.","ahead":"Presiona sides.","behind":"Farma seguro."},"late":{"even":"Duelos ganados.","ahead":"Split push final.","behind":"Soporte en fights."}},
+      "darius":{"early":{"even":"Farmea y busca trades.","ahead":"Snowball kills.","behind":"Safe farm."},"mid":{"even":"Presiona con R.","ahead":"Teamfights fuertes.","behind":"Frontline."},"late":{"even":"Amenaza carry.","ahead":"Carrilea peleas.","behind":"Peel aliado."}},
+      "jax":{"early":{"even":"Farmea.","ahead":"All-in.","behind":"Escala."},"mid":{"even":"Splitpush.","ahead":"Duelos fuertes.","behind":"Farm."},"late":{"even":"God mode 1v1.","ahead":"Split imparable.","behind":"Aporta peel."}},
+      "riven":{"early":{"even":"Tradea con combos.","ahead":"Presiona kills.","behind":"Farmea torre."},"mid":{"even":"Busca flancos.","ahead":"One shots.","behind":"Apoya peleas."},"late":{"even":"Burst en backline.","ahead":"Engage fuerte.","behind":"Soporte peleas."}},
+      "katarina":{"early":{"even":"Farmea y poke.","ahead":"Snowball kills.","behind":"Safe farm."},"mid":{"even":"All-in en peleas.","ahead":"Deletea carries.","behind":"Split discreto."},"late":{"even":"Wombo con R.","ahead":"Carrilea.","behind":"Zonifica."}},
+      "lux":{"early":{"even":"Farmea con E.","ahead":"Pokea mucho.","behind":"Farmea torre."},"mid":{"even":"Control con Q.","ahead":"Pick offs.","behind":"Apoya desde lejos."},"late":{"even":"Zona y poke.","ahead":"Snipes con R.","behind":"Útil en peel."}},
+      "ezreal":{"early":{"even":"Farmea con Q.","ahead":"Pokea y presiona.","behind":"Safe farm."},"mid":{"even":"Poke constante.","ahead":"Pick offs agresivos.","behind":"Juega safe."},"late":{"even":"Kiteo infinito.","ahead":"Daño sostenido.","behind":"Apoyo seguro."}},
+      "jinx":{"early":{"even":"Farmea.","ahead":"Pokea con cohetes.","behind":"Farmea torre."},"mid":{"even":"Siege fuerte.","ahead":"Carrilea peleas.","behind":"Safe."},"late":{"even":"Hyper carry.","ahead":"Teamfights easy.","behind":"Kitea con peel."}},
+      "caitlyn":{"early":{"even":"Controla línea con rango.","ahead":"Zonifica.","behind":"Farm bajo torre."},"mid":{"even":"Siege.","ahead":"Abusa rango.","behind":"Safe peel."},"late":{"even":"Hyper carry poke.","ahead":"Carrilea.","behind":"Apoya fights."}},
+      "lucian":{"early":{"even":"Trades cortos.","ahead":"Presiona kills.","behind":"Farmea seguro."},"mid":{"even":"Explota carries.","ahead":"Snowball.","behind":"Safe peel."},"late":{"even":"Burst en backline.","ahead":"Agresivo.","behind":"Support daño."}},
+      "thresh":{"early":{"even":"Farmea picks.","ahead":"Engage agresivo.","behind":"Protege ADC."},"mid":{"even":"Control visión.","ahead":"Forza peleas.","behind":"Defiende carries."},"late":{"even":"Pick clave.","ahead":"Engagea.","behind":"Peel."}},
+      "blitzcrank":{"early":{"even":"Busca hooks.","ahead":"Presiona kills.","behind":"Farmea torre."},"mid":{"even":"Pick offs con Q.","ahead":"Forza fights.","behind":"Defiende ADC."},"late":{"even":"Hook clave.","ahead":"Cambia peleas.","behind":"Peel."}},
+      "leona":{"early":{"even":"All-in nivel 2.","ahead":"Presiona kills.","behind":"Juega defensivo."},"mid":{"even":"Engage fuerte.","ahead":"Snowball.","behind":"Peel."},"late":{"even":"Frontline.","ahead":"Engagea.","behind":"Protege backline."}},
+      "morgana":{"early":{"even":"Pokea con W.","ahead":"Q picks.","behind":"Farmea torre."},"mid":{"even":"Zona con Q.","ahead":"Caza enemigos.","behind":"Apoya safe."},"late":{"even":"Escudos clave.","ahead":"Zona.","behind":"Útil peel."}},
+      "soraka":{"early":{"even":"Farmea curas.","ahead":"Abusa curando.","behind":"Safe heal."},"mid":{"even":"Cura global.","ahead":"Presión en mapa.","behind":"Apoyo."},"late":{"even":"Curaciones masivas.","ahead":"Inmortalidad.","behind":"Peel."}},
+      "sona":{"early":{"even":"Poke con Q.","ahead":"Presiona heal.","behind":"Farmea safe."},"mid":{"even":"R clave.","ahead":"Buffs.","behind":"Peel."},"late":{"even":"Auras OP.","ahead":"Wombo.","behind":"Útil safe."}},
+      "taric":{"early":{"even":"Juega defensivo.","ahead":"Trades.","behind":"Heal torre."},"mid":{"even":"Ultis clave.","ahead":"Zona objetivos.","behind":"Peel."},"late":{"even":"Inmortalidad.","ahead":"Frontline.","behind":"Apoyo safe."}},
+      "braum":{"early":{"even":"Defiende ADC.","ahead":"All in.","behind":"Juega safe."},"mid":{"even":"Protección CC.","ahead":"Zona objetivos.","behind":"Defiende."},"late":{"even":"Peel ADC.","ahead":"Frontline.","behind":"Apoyo."}},
+      "shen":{"early":{"even":"Farmea con Q.","ahead":"Presiona y usa R global.","behind":"Juega defensivo."},"mid":{"even":"R clave para side lanes.","ahead":"Splitpush y global.","behind":"Protege con R."},"late":{"even":"Frontline y R salvadora.","ahead":"Splitpush con presión.","behind":"Peel."}},
+      "singed":{"early":{"even":"Farmea proxys.","ahead":"Abusa de proxy.","behind":"Farmea seguro."},"mid":{"even":"Zona y split.","ahead":"Forza errores.","behind":"Grupo."},"late":{"even":"Molesta backline.","ahead":"Crea caos.","behind":"Frontline secundario."}},
+      "sylas":{"early":{"even":"Farmea y roba ultis.","ahead":"Agresivo en trades.","behind":"Safe bajo torre."},"mid":{"even":"Usa ultis clave.","ahead":"Snowball.","behind":"Grupo."},"late":{"even":"Roba ultis fuertes.","ahead":"Amenaza carries.","behind":"Peel."}},
+      "ornn":{"early":{"even":"Farmea y escala objetos.","ahead":"Presiona y tradea con W.","behind":"Farmea bajo torre y juega safe."},"mid":{"even":"Frontline sólido, inicia con R.","ahead":"Control de objetivos y engages.","behind":"Proporciona utilidad y peel."},"late":{"even":"Eres iniciador clave con tu R.","ahead":"Tanquea y lidera peleas.","behind":"Usa tu CC para proteger a los carries."}},
+      "pantheon":{"early":{"even":"Abusa de su daño base en trades.","ahead":"Domina línea y busca roams.","behind":"Juega bajo torre y espera oportunidades."},"mid":{"even":"Rota con la R para ayudar en otras líneas.","ahead":"Busca snowball en el mapa.","behind":"Defiende y juega seguro."},"late":{"even":"Usa CC y peel en peleas.","ahead":"Amenaza la backline con engages.","behind":"Proporciona utilidad y control."}}
     };
 
     const champSelect = document.getElementById("champion");
