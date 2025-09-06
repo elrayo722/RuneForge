@@ -1,158 +1,156 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Guía Interactiva LoL - Completa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Interactiva LoL - Estrategias por Campeón</title>
   <style>
-    /* ===== FUENTES Y RESET ===== */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Roboto', sans-serif; background:#0d0d0d; color:#f0f0f0; }
-    h1,h2,h3,h4,h5,h6 { margin:0; }
-
-    /* ===== HEADER ===== */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
     header {
-      background: linear-gradient(90deg, #1f1f1f, #222222);
-      padding: 25px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      border-bottom: 2px solid #444;
-    }
-
-    /* ===== MAIN LAYOUT ===== */
-    main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-
-    /* ===== INPUT SECTION ===== */
-    .input-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
-      justify-content: center;
-      background: #141414;
+      background-color: #1e1e1e;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
     }
-    label { font-size: 14px; color:#ccc; margin-right: 5px; }
+    main {
+      padding: 20px;
+    }
+    label, select, button {
+      font-size: 16px;
+      margin: 10px 0;
+    }
     select, button {
-      padding: 10px 15px;
-      border-radius: 8px;
-      border:none;
-      font-size: 14px;
-      outline:none;
-      transition: all 0.2s ease;
-    }
-    select {
-      background: #1a1a1a;
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      background-color: #333;
+      border: 1px solid #444;
       color: #fff;
+      border-radius: 5px;
     }
-    select:hover { background: #222; }
     button {
-      background: #ff4d4d;
-      color: #fff;
-      font-weight: 600;
       cursor: pointer;
-      border: 1px solid transparent;
+      background-color: #007bff;
+      border: none;
     }
     button:hover {
-      background: #ff1a1a;
-      box-shadow: 0 4px 12px rgba(255,26,26,0.4);
+      background-color: #0056b3;
     }
-
-    /* ===== RESULT CARD ===== */
     .resultado {
-      background: #1c1c1c;
-      padding: 25px;
-      border-radius: 15px;
-      min-height: 150px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-      transition: all 0.3s ease;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 5px;
+      display: none;
     }
     .resultado h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #ff4d4d;
+      margin-top: 0;
     }
-    .resultado div {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #e0e0e0;
-    }
-
-    /* ===== HOVER & TRANSITIONS ===== */
-    .resultado:hover { transform: translateY(-3px); }
   </style>
 </head>
 <body>
-  <header>Guía Interactiva de League of Legends</header>
+  <header>Guía Interactiva LoL - Estrategias por Campeón</header>
   <main>
-    <div class="input-section">
-      <label for="champion">Campeón</label>
-      <select id="champion"></select>
+    <label for="campeon">Selecciona un Campeón:</label>
+    <select id="campeon">
+      <option value="">-- Elige un Campeón --</option>
+      <option value="Aatrox">Aatrox</option>
+      <option value="Ahri">Ahri</option>
+      <option value="Akali">Akali</option>
+      <!-- Agrega aquí todos los campeones -->
+    </select>
 
-      <label for="fase">Fase</label>
-      <select id="fase">
-        <option value="early">Early Game</option>
-        <option value="mid">Mid Game</option>
-        <option value="late">Late Game</option>
-      </select>
+    <label for="fase">Selecciona la Fase del Juego:</label>
+    <select id="fase">
+      <option value="early">Early Game</option>
+      <option value="mid">Mid Game</option>
+      <option value="late">Late Game</option>
+    </select>
 
-      <label for="estado">Estado</label>
-      <select id="estado">
-        <option value="even">Partida Igualada</option>
-        <option value="ahead">Vas Muy Bien</option>
-        <option value="behind">Vas Muy Mal</option>
-      </select>
+    <label for="estado">Selecciona el Estado de la Partida:</label>
+    <select id="estado">
+      <option value="even">Partida Igualada</option>
+      <option value="ahead">Vas Adelante</option>
+      <option value="behind">Vas Atrás</option>
+    </select>
 
-      <button onclick="buscar()">Buscar Estrategia</button>
-    </div>
+    <button onclick="mostrarEstrategia()">Mostrar Estrategia</button>
 
     <div class="resultado" id="resultado">
-      Selecciona un campeón, fase y estado de la partida.
+      <h3 id="titulo"></h3>
+      <p id="estrategia"></p>
     </div>
   </main>
 
   <script>
     const estrategias = {
-      "yasuo": { "early": { "even":"Farmea con seguridad y busca tradeos cortos con Q.","ahead":"Presiona agresivo y congela oleada.","behind":"Juega bajo torre; no uses E agresivamente." }, "mid": { "even":"Rota con tu jungla y busca teamfights.","ahead":"Splitpush y fuerza 1v2.","behind":"Quédate con tu equipo y ultea solo en engages seguros." }, "late": { "even":"Espera buen engage; tu rol es borrar carries.","ahead":"Haz picks en jungla y fuerza peleas.","behind":"Haz peel a tu ADC con muro y R defensiva." } },
-      "garen": { "early": { "even":"Trades rápidos con Q+E y retírate.","ahead":"Fuerza dives con tu jungla.","behind":"Farmea bajo torre sin arriesgar." }, "mid": { "even":"Busca picks con Q+R.","ahead":"Lidera peleas y tanquea.","behind":"Juega como frontline defensivo." }, "late": { "even":"Inicia junto a tu jungla.","ahead":"Entra y acapara la primera línea.","behind":"Protege al backline y no te aísles." } },
-      "nunu": { "early": { "even":"Farmea y gankea con snowball; controla dragones.","ahead":"Invade jungla enemiga y presiona.","behind":"Farmea seguro y evita peleas arriesgadas." }, "mid": { "even":"Rota para objetivos y ultea en teamfights.","ahead":"Controla dragones y Nashor.","behind":"Engagea solo con visión y apoyo." }, "late": { "even":"Inicia con R en peleas grupales.","ahead":"Divide presión y fuerza objetivos.","behind":"Mantente con tu equipo y usa R defensiva." } }
-      // ... agrega los demás campeones aquí, manteniendo la misma estructura
+      "Aatrox": {
+        "early": {
+          "even": "Farmea con seguridad y busca intercambios cortos.",
+          "ahead": "Presiona la línea y busca emboscadas.",
+          "behind": "Juega defensivamente y espera apoyo."
+        },
+        "mid": {
+          "even": "Participa en peleas grupales y controla el mapa.",
+          "ahead": "Inicia peleas y divide al equipo enemigo.",
+          "behind": "Evita peleas y protege a tus carries."
+        },
+        "late": {
+          "even": "Busca flanqueos y controla objetivos.",
+          "ahead": "Lidera las peleas y asegura la victoria.",
+          "behind": "Juega con cautela y busca oportunidades."
+        }
+      },
+      "Ahri": {
+        "early": {
+          "even": "Controla la oleada y busca emboscadas.",
+          "ahead": "Presiona la línea y rota con tu jungla.",
+          "behind": "Juega bajo torre y espera apoyo."
+        },
+        "mid": {
+          "even": "Participa en peleas y controla el mapa.",
+          "ahead": "Inicia peleas y controla objetivos.",
+          "behind": "Evita peleas y protege a tus carries."
+        },
+        "late": {
+          "even": "Busca flanqueos y controla objetivos.",
+          "ahead": "Lidera las peleas y asegura la victoria.",
+          "behind": "Juega con cautela y busca oportunidades."
+        }
+      },
+      // Agrega las estrategias para todos los campeones
     };
 
-    const championSelect = document.getElementById('champion');
-    Object.keys(estrategias).forEach(key => {
-      const opt = document.createElement('option');
-      opt.value = key;
-      opt.text = key.charAt(0).toUpperCase() + key.slice(1);
-      championSelect.appendChild(opt);
-    });
+    function mostrarEstrategia() {
+      const campeon = document.getElementById("campeon").value;
+      const fase = document.getElementById("fase").value;
+      const estado = document.getElementById("estado").value;
+      const resultado = document.getElementById("resultado");
+      const titulo = document.getElementById("titulo");
+      const estrategia = document.getElementById("estrategia");
 
-    function buscar() {
-      const champ = document.getElementById('champion').value;
-      const fase  = document.getElementById('fase').value;
-      const estado = document.getElementById('estado').value;
-      const resultado = document.getElementById('resultado');
-
-      if (!champ) { 
-        resultado.innerText = 'Selecciona un campeón.'; 
-        return; 
+      if (!campeon || !fase || !estado) {
+        resultado.style.display = "none";
+        alert("Por favor, selecciona todos los campos.");
+        return;
       }
 
-      const dato = estrategias[champ]?.[fase]?.[estado];
-      if (dato) {
-        const champName = champ.split(/[-_ ]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        resultado.innerHTML = `
-          <h3>${champName} — ${fase.toUpperCase()} (${estado})</h3>
-          <div>${dato}</div>
-        `;
+      const estrategiaSeleccionada = estrategias[campeon]?.[fase]?.[estado];
+
+      if (estrategiaSeleccionada) {
+        titulo.textContent = `${campeon} - ${fase.charAt(0).toUpperCase() + fase.slice(1)} (${estado.charAt(0).toUpperCase() + estado.slice(1)})`;
+        estrategia.textContent = estrategiaSeleccionada;
+        resultado.style.display = "block";
       } else {
-        resultado.innerText = 'No hay datos para ese campeón/fase/estado.';
+        resultado.style.display = "none";
+        alert("Estrategia no disponible para este campeón en esta fase y estado.");
       }
     }
   </script>
