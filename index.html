@@ -72,10 +72,10 @@
     <div class="enemy-selector">
         <label for="enemy">Contra quién juegas:</label>
         <select id="enemy">
-            <option value="general">General</option>
             <option value="assassin">Asesinos</option>
             <option value="tank">Tanques</option>
             <option value="mage">Magos</option>
+            <option value="marksman">Tiradores</option>
         </select>
     </div>
 
@@ -87,10 +87,6 @@
 <script>
     const buildsData = {
         ornn: {
-            general: {
-                items: ["Sunfire Aegis", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
-                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
-            },
             assassin: {
                 items: ["Sunfire Aegis", "Thornmail", "Force of Nature", "Plated Steelcaps", "Spirit Visage", "Randuin's Omen"],
                 runes: ["Aftershock", "Font of Life", "Conditioning", "Overgrowth"]
@@ -98,14 +94,30 @@
             tank: {
                 items: ["Frostfire Gauntlet", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
                 runes: ["Aftershock", "Font of Life", "Second Wind", "Overgrowth"]
+            },
+            mage: {
+                items: ["Sunfire Aegis", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
+            },
+            marksman: {
+                items: ["Sunfire Aegis", "Thornmail", "Randuin's Omen", "Plated Steelcaps", "Spirit Visage", "Warmog's Armor"],
+                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
             }
         },
         sylas: {
-            general: {
+            assassin: {
                 items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
                 runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
             },
             tank: {
+                items: ["Everfrost", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Morellonomicon"],
+                runes: ["Electrocute", "Cheap Shot", "Eyeball Collection", "Ravenous Hunter"]
+            },
+            mage: {
+                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Rabadon's Deathcap"],
+                runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
+            },
+            marksman: {
                 items: ["Everfrost", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Morellonomicon"],
                 runes: ["Electrocute", "Cheap Shot", "Eyeball Collection", "Ravenous Hunter"]
             }
@@ -119,7 +131,7 @@
     function showBuild() {
         const champ = championSelect.value;
         const enemy = enemySelect.value;
-        const build = buildsData[champ][enemy] || buildsData[champ]["general"];
+        const build = buildsData[champ][enemy];
 
         buildsDiv.innerHTML = `
             <div class="build-card">
