@@ -2,30 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Guía LoL para Principiantes – 50 Campeones</title>
+  <title>Guía LoL – 50 Campeones Estética Modern</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f0f2f5; margin:0; padding:20px; }
-    h1 { text-align: center; }
-    #champion-select { display: flex; justify-content: center; margin-bottom: 20px; }
-    select { padding: 10px; font-size: 16px; width: 320px; }
-    #instructions { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
-    .role { font-weight: bold; }
-    .section { margin-top: 10px; }
-    .section h3 { margin-bottom: 5px; }
+    /* Reset y tipografía */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f5f7fa;
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+
+    /* Dropdown estilizado */
+    .select-wrapper {
+      position: relative;
+      width: 320px;
+      margin-bottom: 2rem;
+    }
+    select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      appearance: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      background: white;
+    }
+
+    /* Tarjeta de campeón */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 640px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .role { font-weight: bold; color: #0055aa; }
+    .section + .section { margin-top: 1rem; }
+    .section h3 { margin-bottom: 0.5rem; font-size: 1.1rem; color: #0055aa; }
+    .section ul { list-style: inside disc; padding-left: 0.5rem; }
   </style>
 </head>
 <body>
+  <h1>Guía LoL – Principiantes (50 Campeones)</h1>
 
-  <h1>Guía Interactiva LoL – Principiantes (50 Campeones)</h1>
-
-  <div id="champion-select">
-    <label for="champions">Selecciona un campeón:</label>
-    <select id="champions">
-      <option value="">-- Elige un campeón --</option>
-    </select>
+  <div class="select-wrapper">
+    <select id="champions"><option value="">-- Elige un campeón --</option></select>
   </div>
 
-  <div id="instructions">
+  <div id="instructions" class="card">
     <p>Selecciona un campeón para ver su rol, consejos y build.</p>
   </div>
 
@@ -34,85 +70,72 @@
       "Garen": {
         role: "Top",
         tips: [
-          "Q para limpiar súbditos o hostigar, W para defenderte, E para daño en área, R para ejecutar.",
-          "Usa tu pasiva de regeneración tras evitar daño para ganar ventaja en línea.",
-          "Actúa agresivamente cuando el enemigo esté sin recursos o mal posicionado."
+          "Q limpia minions y hostiga; W protege; E hace daño en área; R ejecuta.",
+          "Activa tu pasiva antes de intercambios largos.",
+          "Entra agresivo cuando el enemigo tenga CD o sin recursos."
         ],
-        build: "Berserker's Greaves, Stridebreaker, Phantom Dancer, Black Cleaver, Spear of Shojin, Dead Man’s Plate — Runas: Conqueror (precisión), con secondary Sorcery — Flash + Ignite"  // :contentReference[oaicite:0]{index=0}
+        build: "Berserker's Greaves, Stridebreaker, Phantom Dancer, Black Cleaver, Spear of Shojin, Dead Man’s Plate — Runas: Conqueror, Triumph, Legend: Haste, Last Stand"
       },
       "Sylas": {
         role: "Mid / Jungla",
         tips: [
-          "Robar la ulti enemiga (R) en el momento adecuado puede cambiar una pelea.",
-          "Combo eficaz: W (Kingslayer) → E → Q para daño y sustain.",
-          "Posiciónate bien antes de robar la ulti para maximizar impacto."
+          "Robar ulti con R puede ganar peleas.",
+          "Combo W → E → Q para burst y sustain.",
+          "Posiciónate bien antes de robar la ulti enemiga."
         ],
-        build: "Rocketbelt → Shadowflame → Zhonya’s Hourglass — Runas: Conqueror primary y Second Wind o Unflinching secondary"  // estimado de builds populares :contentReference[oaicite:1]{index=1}
+        build: "Rocketbelt, Shadowflame, Zhonya’s — Runas: Conqueror + Second Wind o Unflinching"
       },
       "Darius": {
         role: "Top / Bruiser",
         tips: [
-          "Aprovecha tu pasiva para limpiar rápido y snowballear.",
-          "Usa Stridebreaker para enganchar y aplicar tu daño completo.",
-          "Mantén presión y construye daño + supervivencia (Sterak’s Gage, Dead Man’s Plate)."
+          "Usa tu pasiva para presionar y snowballear.",
+          "Engancha con Stridebreaker y encadena daño.",
+          "Combina daño y resistencia (Sterak’s, Dead Man’s Plate)."
         ],
-        build: "Stridebreaker → Steelcaps (o Plated Steelcaps) → Sterak’s Gage → Dead Man’s Plate → Force of Nature — Runas: Conqueror..."  // :contentReference[oaicite:2]{index=2}
+        build: "Stridebreaker, Steelcaps, Sterak’s Gage, Dead Man’s Plate, Force of Nature — Runas: Conqueror..."
       },
       "Ornn": {
         role: "Top / Tank",
         tips: [
-          "Forja objetos únicos con tu pasiva.",
-          "Usa Q para poke y clear, R para iniciar en equipo.",
-          "Sé la línea frontal: absorbe daño y abre espacio para tu equipo."
+          "Forja tus objetos únicos con la pasiva.",
+          "Usa Q para poke, R para iniciar peleas.",
+          "Sé frontline y absorbe daño por tu equipo."
         ],
-        build: "Sunfire Aegis → Plated Steelcaps → Thornmail → Kaenic Rookern → Unending Despair → Jak'Sho, The Protean — Runas: Grasp of the Undying (Resole) + Inspiration secondary"  // :contentReference[oaicite:3]{index=3}
-      },
-      // Aquí agregas los otros 46 campeones con la misma estructura: role, tips, build.
+        build: "Sunfire Aegis, Steelcaps, Thornmail — Runas: Grasp of the Undying + Inspiration"
+      }
+      // Agrega los otros 46 campeones aquí con la misma estructura…
     };
 
-    const champList = [
-      "Garen","Sylas","Darius","Ornn",
-      "Lux","Ashe","Leona","Master Yi","Dr. Mundo","Annie",
-      "Malphite","Warwick","Amumu","Soraka","Ezreal","Jinx",
-      "Miss Fortune","Lucian","Thresh","Nautilus","Morgana",
-      "Brand","Caitlyn","Nami","Lulu","Senna","Yasuo",
-      "Fiora","Riven","Irelia","Sett","Nasus",
-      "Mordekaiser","Poppy","Kayle","Swain","Yone","Nocturne",
-      "Katarina","Senna","Vayne","Kha'Zix","Rengar","Teemo",
-      "Nunu","Veigar","Orianna","Blitzcrank","Karma"
-    ];
+    const champList = ["Garen","Sylas","Darius","Ornn","Lux","Ashe","Leona","Master Yi","Dr. Mundo","Annie","Malphite","Warwick","Amumu","Soraka","Ezreal","Jinx","Miss Fortune","Lucian","Thresh","Nautilus","Morgana","Brand","Caitlyn","Nami","Lulu","Senna","Yasuo","Fiora","Riven","Irelia","Sett","Nasus","Mordekaiser","Poppy","Kayle","Swain","Yone","Nocturne","Katarina","Vayne","Kha'Zix","Rengar","Teemo","Nunu","Veigar","Orianna","Blitzcrank","Karma"];
 
-    const select = document.getElementById('champions');
-    champList.forEach(name => {
-      const opt = document.createElement('option');
-      opt.value = name;
-      opt.textContent = name;
+    const select = document.getElementById("champions");
+    champList.forEach(champ => {
+      const opt = document.createElement("option");
+      opt.value = champ; opt.textContent = champ;
       select.appendChild(opt);
     });
 
-    select.addEventListener('change', () => {
+    select.addEventListener("change", () => {
       const champ = select.value;
-      const instrDiv = document.getElementById('instructions');
-
+      const div = document.getElementById("instructions");
       if (!champ) {
-        instrDiv.innerHTML = '<p>Selecciona un campeón para ver su rol, consejos y build.</p>';
+        div.innerHTML = `<p>Selecciona un campeón para ver su rol, consejos y build.</p>`;
       } else if (instructions[champ]) {
         const { role, tips, build } = instructions[champ];
-        instrDiv.innerHTML = `
-          <h2>${champ} – Rol: <span class="role">${role}</span></h2>
+        div.innerHTML = `
+          <h2>${champ} – <span class="role">${role}</span></h2>
           <div class="section">
             <h3>Consejos para principiantes:</h3>
-            <ul>${tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
+            <ul>${tips.map(t => `<li>${t}</li>`).join('')}</ul>
           </div>
           <div class="section">
             <h3>Build recomendada:</h3>
             <p>${build}</p>
           </div>`;
       } else {
-        instrDiv.innerHTML = '<p>No hay datos para este campeón aún, pero pronto los agregaremos.</p>';
+        div.innerHTML = `<p>No hay datos para este campeón aún, ¡pero los agregaremos pronto!</p>`;
       }
     });
   </script>
-
 </body>
 </html>
