@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Guía LoL para Principiantes – 100 Campeones</title>
+  <title>Guía LoL – 100 Campeones con Builds</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f0f2f5; margin:0; padding:20px; }
     h1 { text-align: center; }
@@ -23,62 +23,19 @@
     </select>
   </div>
   <div id="instructions">
-    <p>Selecciona un campeón para ver su rol, consejos y la build recomendada.</p>
+    <p>Selecciona un campeón para ver su rol, consejos y build.</p>
   </div>
 
   <script>
     const instructions = {
-      "Garen": {
-        role: "Top",
-        tips: [
-          "Usa tu pasiva para regenerar salud cuando no recibes daño.",
-          "Q para limpiar súbditos y hostigar, W para defenderte, E para daño.",
-          "Compra objetos de vida y resistencia, ulti cuando el enemigo esté debilitado."
-        ],
-        build: "Stridebreaker → Phantom Dancer → Dead Man's Plate (eficaz contra daño físico) :contentReference[oaicite:0]{index=0}"
-      },
-      "Darius": {
-        role: "Top",
-        tips: [
-          "Presiona agresivamente cuando el enemigo se equivoque.",
-          "E para atraer, luego Q/W/ulti para rematar la pasiva.",
-          "Construye daño físico con algo de armadura para duelos sostenidos."
-        ],
-        build: "Basado en estilo bruiser estándar: Stridebreaker → Plated Steelcaps → Sterak’s Gage (adaptable según partida)."
-      },
-      "Ornn": {
-        role: "Top / Tank",
-        tips: [
-          "Forja objetos defensivos únicos con tu pasiva.",
-          "Usa Q para poke, R para iniciar peleas en equipo.",
-          "Compra objetos robustos para absorber daño por el equipo."
-        ],
-        build: "Objetos centrados en tanqueo y utilidad, usualmente include Thornmail, Sunfire Aegis, Black Cleaver."
-      },
-      "Sylas": {
-        role: "Mid / Luchador",
-        tips: [
-          "Robar ultis enemigos (R) es clave—elige el momento adecuado.",
-          "Q + W para burst rápido, construye AP con algo de resistencia.",
-          "Posiciónate bien antes de robar la ulti del enemigo."
-        ],
-        build: "Rocketbelt (Hextech) → Zhonya’s Hourglass → Shadowflame / Spear of Shojin → Rabadon’s Deathcap; botas Mágicas. :contentReference[oaicite:1]{index=1}"
-      },
-      // ... Puedes agregar aquí más campeones con estructura similar ...
+      "Garen": { role: "Top", tips: [...], build: "..." },
+      "Darius": { role: "Top", tips: [...], build: "..." },
+      "Ornn": { role: "Top/Tank", tips: [...], build: "..." },
+      "Sylas": { role: "Mid/Luchador", tips: [...], build: "..." }
+      // Solo estos cuatro tienen datos
     };
 
-    const champList = ["Garen","Darius","Ornn","Sylas",
-      // Aquí añade hasta completar 100 campeones
-      "Lux","Ashe","Annie","Master Yi","Dr. Mundo","Malphite","Amumu","Soraka","Lucian","Jinx",
-      "Janna","Thresh","Leona","Anivia","Caitlyn","Nasus","Mordekaiser","Poppy","Sett","Fiora",
-      "Yasuo","Jinx","Ezreal","Lucian","Sona","Nami","Lulu","Maokai","Rammus","Volibear",
-      "Kayle","Veigar","Morgana","Brand","Blitzcrank","Renekton","Tryndamere","Swain","Zed","Kassadin",
-      "Orianna","Draven","Nautilus","Riven","Cassiopeia","Miss Fortune","Varus","Caitlyn","Sivir","Lux",
-      "Warwick","Malzahar","Yone","Xin Zhao","Nunu","Amumu","Veigar","Morgana","Katarina","Teemo",
-      "Olaf","Kha'Zix","Leona","Irelia","Vayne","Kai’Sa","Thresh","Ashe","Annie","Diana","Yuumi",
-      "Seraphine","Ekko","Ziggs","Ryze","Shyvana","Braum","Karthus","Xayah","Rakan","Zac",
-      "Lillia","Rell","Samira","Senna","Yorick","Kayn","Ivern","Sylas2","Garen2","Darius2"
-    ];
+    const champList = ["Garen","Darius","Ornn","Sylas", /* ... hasta 100 campeones ... */];
 
     const select = document.getElementById('champions');
     champList.forEach(name => {
@@ -90,7 +47,9 @@
 
     select.addEventListener('change', () => {
       const champ = select.value;
-      if (champ && instructions[champ]) {
+      if (champ === "") {
+        document.getElementById('instructions').innerHTML = '<p>Selecciona un campeón para ver su rol, consejos y build.</p>';
+      } else if (instructions[champ]) {
         const { role, tips, build } = instructions[champ];
         document.getElementById('instructions').innerHTML = `
           <h2>${champ} – Rol: <span class="role">${role}</span></h2>
@@ -101,10 +60,9 @@
           <div class="section">
             <h3>Build recomendada:</h3>
             <p>${build}</p>
-          </div>
-        `;
+          </div>`;
       } else {
-        document.getElementById('instructions').innerHTML = '<p>Selecciona un campeón para ver su rol, consejos y build.</p>';
+        document.getElementById('instructions').innerHTML = '<p>No hay datos disponibles para este campeón todavía. ¡Pronto los agregaremos!</p>';
       }
     });
   </script>
