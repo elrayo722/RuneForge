@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>RuneForge – Builds Situacionales</title>
+  <title>RuneForge – Builds Profesionales</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cinzel', serif; background: #1c1c1c; color: #d4af37; display: flex; flex-direction: column; align-items: center; padding: 2rem; text-align: center; }
@@ -11,7 +11,7 @@
     .select-wrapper { position: relative; width: 320px; margin-bottom: 2rem; background: #3a3a3a; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
     select { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: none; border-radius: 8px; appearance: none; background: #3a3a3a; color: #d4af37; cursor: pointer; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
     select:focus { outline: none; box-shadow: 0 0 10px #007bff; }
-    .card { background: #2a2a2a; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); width: 100%; max-width: 800px; padding: 1.5rem; margin-top: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .card { background: #2a2a2a; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); width: 100%; max-width: 900px; padding: 1.5rem; margin-top: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
     .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.7); }
     .role { font-weight: bold; color: #007bff; }
     .section { margin-top: 1rem; }
@@ -26,7 +26,7 @@
   </style>
 </head>
 <body>
-  <h1>RuneForge – Builds Situacionales</h1>
+  <h1>RuneForge – Builds Profesionales</h1>
 
   <div class="select-wrapper">
     <select id="champions">
@@ -35,7 +35,7 @@
   </div>
 
   <div id="instructions" class="card">
-    <p>Selecciona un campeón para ver su build de items y runas según la situación.</p>
+    <p>Selecciona un campeón para ver sus builds de items y runas según la situación.</p>
   </div>
 
   <script>
@@ -43,14 +43,14 @@
       "Garen": {
         role: "Top",
         builds: [
-          { situacion: "Vs AD pesado", items: ["Placa del hombre muerto", "Corazón de Hielo", "Malla de Espinas"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Valor", "Inspiración"] },
+          { situacion: "Vs AD pesado", items: ["Placa del Hombre Muerto", "Corazón de Hielo", "Malla de Espinas"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Valor", "Inspiración"] },
           { situacion: "Vs AP pesado", items: ["Fuerza de la Trinidad", "Tabi de Ninja", "Fauces de Malmortius"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Valor", "Inspiración"] }
         ]
       },
       "Sylas": {
         role: "Mid / Jungla",
         builds: [
-          { situacion: "Burst", items: ["Cinturón de Ráfaga", "Fuego Solar", "Reloj de Zhonya"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Dominación", "Inspiración"] },
+          { situacion: "Burst", items: ["Cinturón Hextech", "Eco de Luden", "Reloj de Zhonya"], runas: ["Electrocutar", "Impacto Repentino", "Cazador Voraz", "Cazador Ingenioso", "Dominación", "Inspiración"] },
           { situacion: "Sustain", items: ["Eco de Luden", "Sombras de Morellonomicon", "Reloj de Zhonya"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Dominación", "Inspiración"] }
         ]
       },
@@ -81,7 +81,7 @@
       const champ = select.value;
       const div = document.getElementById("instructions");
       if (!champ) {
-        div.innerHTML = `<p>Selecciona un campeón para ver su build de items y runas según la situación.</p>`;
+        div.innerHTML = `<p>Selecciona un campeón para ver sus builds de items y runas según la situación.</p>`;
       } else {
         const { role, builds } = instructions[champ];
         div.innerHTML = `<h2>${champ} – <span class="role">${role}</span></h2>`;
