@@ -80,19 +80,14 @@
       list-style: inside disc;
       padding-left: 0.5rem;
     }
-    /* Efectos de animación */
     .highlight {
       color: #ff4500;
       text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500;
       animation: glow 1.5s ease-in-out infinite alternate;
     }
     @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500;
-      }
-      to {
-        text-shadow: 0 0 20px #ff4500, 0 0 30px #ff4500;
-      }
+      from { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; }
+      to { text-shadow: 0 0 20px #ff4500, 0 0 30px #ff4500; }
     }
   </style>
 </head>
@@ -102,7 +97,6 @@
   <div class="select-wrapper">
     <select id="champions">
       <option value="">-- Elige un campeón --</option>
-      <!-- Opciones de campeones se agregarán dinámicamente -->
     </select>
   </div>
 
@@ -129,8 +123,62 @@
           "Posiciónate bien antes de robar la ulti enemiga."
         ],
         build: "Rocketbelt, Shadowflame, Zhonya’s — Runas: Conqueror + Second Wind o Unflinching"
+      },
+      "Darius": {
+        role: "Top / Bruiser",
+        tips: [
+          "Acumula pasiva para aplicar daño verdadero.",
+          "Engancha con E y usa W para resistir daño.",
+          "R ejecuta enemigos con poca vida."
+        ],
+        build: "Stridebreaker, Steelcaps, Sterak’s Gage, Dead Man’s Plate, Force of Nature — Runas: Conqueror, Triumph, Legend: Tenacity, Last Stand"
+      },
+      "Ornn": {
+        role: "Top / Tank",
+        tips: [
+          "Forja objetos únicos para tu equipo.",
+          "Q para poke, E para desplazamiento, R para iniciar peleas.",
+          "Sé frontline y absorbe daño."
+        ],
+        build: "Sunfire Aegis, Thornmail, Warmog’s Armor — Runas: Grasp of the Undying, Second Wind, Overgrowth"
+      },
+      "Lux": {
+        role: "Mid / Support",
+        tips: [
+          "Q atrapa enemigos, E da daño en área.",
+          "R remata a distancia.",
+          "Mantente a salvo detrás de aliados y hostiga constantemente."
+        ],
+        build: "Liandry’s Anguish, Rylai’s Crystal Scepter, Zhonya’s Hourglass — Runas: Arcane Comet, Manaflow Band, Transcendence"
+      },
+      "Ashe": {
+        role: "Bot",
+        tips: [
+          "Q aumenta velocidad de ataque.",
+          "W ralentiza enemigos.",
+          "R inicia peleas o remata enemigos."
+        ],
+        build: "Kraken Slayer, Runaan’s Hurricane, Guardian Angel — Runas: Lethal Tempo, Presence of Mind, Legend: Bloodline"
+      },
+      "Leona": {
+        role: "Support",
+        tips: [
+          "Q inicia engage, W reduce daño recibido.",
+          "E acerca a enemigos, R aturde en área.",
+          "Sé frontline y protege al ADC."
+        ],
+        build: "Locket of the Iron Solari, Zeke’s Convergence, Thornmail — Runas: Aftershock, Font of Life, Unflinching"
+      },
+      "Master Yi": {
+        role: "Jungla",
+        tips: [
+          "Q salta entre enemigos, W cura.",
+          "E aumenta velocidad de ataque.",
+          "R te hace inmune a CC y permite limpiar la jungla rápido."
+        ],
+        build: "Kraken Slayer, Guinsoo’s Rageblade, Wuju Style — Runas: Conqueror, Triumph, Legend: Alacrity"
       }
-      // Agrega más campeones aquí...
+      // Puedes seguir agregando más campeones con tips y builds aquí...
     };
 
     const champList = ["Garen", "Sylas", "Darius", "Ornn", "Lux", "Ashe", "Leona", "Master Yi", "Dr. Mundo", "Annie", "Malphite", "Warwick", "Amumu", "Soraka", "Ezreal", "Jinx", "Miss Fortune", "Lucian", "Thresh", "Nautilus", "Morgana", "Brand", "Caitlyn", "Nami", "Lulu", "Senna", "Yasuo", "Fiora", "Riven", "Irelia", "Sett", "Nasus", "Mordekaiser", "Poppy", "Kayle", "Swain", "Yone", "Nocturne", "Katarina", "Vayne", "Kha'Zix", "Rengar", "Teemo", "Nunu", "Veigar", "Orianna", "Blitzcrank", "Karma"];
@@ -153,17 +201,4 @@
         div.innerHTML = `
           <h2>${champ} – <span class="role">${role}</span></h2>
           <div class="section">
-            <h3>Consejos para principiantes:</h3>
-            <ul>${tips.map(t => `<li>${t}</li>`).join('')}</ul>
-          </div>
-          <div class="section">
-            <h3>Build recomendada:</h3>
-            <p class="highlight">${build}</p>
-          </div>`;
-      } else {
-        div.innerHTML = `<p>No hay datos para este campeón aún, ¡pero los agregaremos pronto!</p>`;
-      }
-    });
-  </script>
-</body>
-</html>
+            <h3>Conse
