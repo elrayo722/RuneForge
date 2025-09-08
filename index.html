@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Guía LoL para Principiantes – 100 Campeones</title>
+  <title>Guía LoL para Principiantes – 50 Campeones</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f0f2f5; margin:0; padding:20px; }
     h1 { text-align: center; }
     #champion-select { display: flex; justify-content: center; margin-bottom: 20px; }
-    select { padding: 10px; font-size: 16px; width: 300px; }
+    select { padding: 10px; font-size: 16px; width: 320px; }
     #instructions { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
     .role { font-weight: bold; }
     .section { margin-top: 10px; }
@@ -15,13 +15,16 @@
   </style>
 </head>
 <body>
-  <h1>Guía Interactiva LoL – Principiantes</h1>
+
+  <h1>Guía Interactiva LoL – Principiantes (50 Campeones)</h1>
+
   <div id="champion-select">
     <label for="champions">Selecciona un campeón:</label>
     <select id="champions">
       <option value="">-- Elige un campeón --</option>
     </select>
   </div>
+
   <div id="instructions">
     <p>Selecciona un campeón para ver su rol, consejos y build.</p>
   </div>
@@ -31,43 +34,53 @@
       "Garen": {
         role: "Top",
         tips: [
-          "Usa Q para limpiar súbditos y hostigar, W para defenderte, E para daño en área y R para ejecución.",
-          "Busca intercambios cuando la pasiva de regeneración esté activa.",
-          "Presiona si el enemigo está mal posicionado o sin recursos."
+          "Q para limpiar súbditos o hostigar, W para defenderte, E para daño en área, R para ejecutar.",
+          "Usa tu pasiva de regeneración tras evitar daño para ganar ventaja en línea.",
+          "Actúa agresivamente cuando el enemigo esté sin recursos o mal posicionado."
         ],
-        build: "Stridebreaker → Phantom Dancer → Dead Man’s Plate; runas: Conqueror, Triumph, Legend: Haste, Last Stand" // :contentReference[oaicite:0]{index=0}
+        build: "Berserker's Greaves, Stridebreaker, Phantom Dancer, Black Cleaver, Spear of Shojin, Dead Man’s Plate — Runas: Conqueror (precisión), con secondary Sorcery — Flash + Ignite"  // :contentReference[oaicite:0]{index=0}
       },
       "Sylas": {
         role: "Mid / Jungla",
         tips: [
-          "Robar ulti enemiga con R en el momento clave del combate.",
-          "Core combo: W (Kingslayer) → E → Q para burst y curarte.",
+          "Robar la ulti enemiga (R) en el momento adecuado puede cambiar una pelea.",
+          "Combo eficaz: W (Kingslayer) → E → Q para daño y sustain.",
           "Posiciónate bien antes de robar la ulti para maximizar impacto."
         ],
-        build: "Hextech Rocketbelt → Shadowflame → Zhonya’s Hourglass; runas: Conqueror primary + Second Wind, Unflinching secondary" // :contentReference[oaicite:1]{index=1}
+        build: "Rocketbelt → Shadowflame → Zhonya’s Hourglass — Runas: Conqueror primary y Second Wind o Unflinching secondary"  // estimado de builds populares :contentReference[oaicite:1]{index=1}
       },
       "Darius": {
-        role: "Top / Jungla bruiser",
+        role: "Top / Bruiser",
         tips: [
-          "Aprovecha pasiva para limpiar rápido y snowballear.",
-          "Empieza con Stridebreaker para enganchar e iniciar peleas.",
-          "Construye daño y supervivencia: Sterak’s Gage, Dead Man’s Plate."
+          "Aprovecha tu pasiva para limpiar rápido y snowballear.",
+          "Usa Stridebreaker para enganchar y aplicar tu daño completo.",
+          "Mantén presión y construye daño + supervivencia (Sterak’s Gage, Dead Man’s Plate)."
         ],
-        build: "Stridebreaker → Plated Steelcaps → Sterak’s Gage → Dead Man’s Plate → Force of Nature; runas: Conqueror, Triumph, Legend: Alacrity, Last Stand" // :contentReference[oaicite:2]{index=2}
+        build: "Stridebreaker → Steelcaps (o Plated Steelcaps) → Sterak’s Gage → Dead Man’s Plate → Force of Nature — Runas: Conqueror..."  // :contentReference[oaicite:2]{index=2}
       },
       "Ornn": {
         role: "Top / Tank",
         tips: [
-          "Forja objetos defensivos únicos con tu pasiva (Eternal Forge).",
-          "Usa Q para poke y clear, y R para iniciar peleas en equipo.",
-          "Juega de línea frontal: absorbe daño y protege a tu equipo."
+          "Forja objetos únicos con tu pasiva.",
+          "Usa Q para poke y clear, R para iniciar en equipo.",
+          "Sé la línea frontal: absorbe daño y abre espacio para tu equipo."
         ],
-        build: "Sunfire Aegis → Thornmail → Abyssal Mask / Randuin’s Omen (situational)" // Basado en rol tanque general, *no se encontró fuente precisa*
-      }
-      // Puedes añadir más campeones aquí siguiendo esta estructura...
+        build: "Sunfire Aegis → Plated Steelcaps → Thornmail → Kaenic Rookern → Unending Despair → Jak'Sho, The Protean — Runas: Grasp of the Undying (Resole) + Inspiration secondary"  // :contentReference[oaicite:3]{index=3}
+      },
+      // Aquí agregas los otros 46 campeones con la misma estructura: role, tips, build.
     };
 
-    const champList = ["Garen","Sylas","Darius","Ornn","Lux","Ashe","Leona","Master Yi","Dr. Mundo","Annie", /*...hasta completar 100*/];
+    const champList = [
+      "Garen","Sylas","Darius","Ornn",
+      "Lux","Ashe","Leona","Master Yi","Dr. Mundo","Annie",
+      "Malphite","Warwick","Amumu","Soraka","Ezreal","Jinx",
+      "Miss Fortune","Lucian","Thresh","Nautilus","Morgana",
+      "Brand","Caitlyn","Nami","Lulu","Senna","Yasuo",
+      "Fiora","Riven","Irelia","Sett","Nasus",
+      "Mordekaiser","Poppy","Kayle","Swain","Yone","Nocturne",
+      "Katarina","Senna","Vayne","Kha'Zix","Rengar","Teemo",
+      "Nunu","Veigar","Orianna","Blitzcrank","Karma"
+    ];
 
     const select = document.getElementById('champions');
     champList.forEach(name => {
@@ -96,9 +109,10 @@
             <p>${build}</p>
           </div>`;
       } else {
-        instrDiv.innerHTML = '<p>No hay datos disponibles para este campeón todavía. ¡Pronto los agregaremos!</p>';
+        instrDiv.innerHTML = '<p>No hay datos para este campeón aún, pero pronto los agregaremos.</p>';
       }
     });
   </script>
+
 </body>
 </html>
