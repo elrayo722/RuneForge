@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Guía LoL – 100 Campeones con Builds</title>
+  <title>Guía Interactiva LoL – Campeones y Builds</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f0f2f5; margin:0; padding:20px; }
     h1 { text-align: center; }
@@ -28,14 +28,28 @@
 
   <script>
     const instructions = {
-      "Garen": { role: "Top", tips: [...], build: "..." },
-      "Darius": { role: "Top", tips: [...], build: "..." },
-      "Ornn": { role: "Top/Tank", tips: [...], build: "..." },
-      "Sylas": { role: "Mid/Luchador", tips: [...], build: "..." }
-      // Solo estos cuatro tienen datos
+      "Garen": {
+        role: "Top",
+        tips: [
+          "Usa Conqueror para intercambios largos y sostenidos.",
+          "Q para silenciar y resetear ataque, W para defenderte, E para daño en área.",
+          "Aprovecha tu ulti como ejecútala cuando el enemigo esté bajo de vida."
+        ],
+        build: "Stridebreaker → Berserker’s Greaves → Phantom Dancer → Spear of Shojin → Dead Man’s Plate; runas: Conqueror, Triumph, Legend: Haste, Last Stand" 
+      },
+      "Sylas": {
+        role: "Jungla / Mid",
+        tips: [
+          "Robar ultis enemigos (R) es clave: elige siempre la mejor ulti del enemigo.",
+          "W (Kingslayer) para curarte, W→E→Q para burst efectivamente.",
+          "Posiciónate bien para robar ultis decisivas."
+        ],
+        build: "Hextech Rocketbelt → Sorcerer’s Shoes → Shadowflame → Zhonya’s Hourglass → Rabadon’s Deathcap; runas: Dark Harvest, Sudden Impact, Grisly Mementos, Treasure Hunter (Inspiración secundaria)" 
+      }
+      // Agrega más campeones con rol, tips y build según necesites...
     };
 
-    const champList = ["Garen","Darius","Ornn","Sylas", /* ... hasta 100 campeones ... */];
+    const champList = ["Garen","Sylas","Darius","Ornn","Lux","Ashe", /* completa hasta 100 */];
 
     const select = document.getElementById('champions');
     champList.forEach(name => {
@@ -47,11 +61,13 @@
 
     select.addEventListener('change', () => {
       const champ = select.value;
-      if (champ === "") {
-        document.getElementById('instructions').innerHTML = '<p>Selecciona un campeón para ver su rol, consejos y build.</p>';
+      const instrDiv = document.getElementById('instructions');
+
+      if (!champ) {
+        instrDiv.innerHTML = '<p>Selecciona un campeón para ver su rol, consejos y build.</p>';
       } else if (instructions[champ]) {
         const { role, tips, build } = instructions[champ];
-        document.getElementById('instructions').innerHTML = `
+        instrDiv.innerHTML = `
           <h2>${champ} – Rol: <span class="role">${role}</span></h2>
           <div class="section">
             <h3>Consejos para principiantes:</h3>
@@ -62,7 +78,7 @@
             <p>${build}</p>
           </div>`;
       } else {
-        document.getElementById('instructions').innerHTML = '<p>No hay datos disponibles para este campeón todavía. ¡Pronto los agregaremos!</p>';
+        instrDiv.innerHTML = '<p>No hay datos disponibles para este campeón todavía. ¡Pronto los agregaremos!</p>';
       }
     });
   </script>
