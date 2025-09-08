@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>RuneForge – Forja de Runas</title>
   <style>
-    /* Reset y tipografía */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Cinzel', serif;
@@ -16,108 +15,43 @@
       padding: 2rem;
       text-align: center;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    h2 {
-      font-size: 2rem;
-      margin-top: 1rem;
-      color: #007bff;
-    }
-    .select-wrapper {
-      position: relative;
-      width: 320px;
-      margin-bottom: 2rem;
-      background: #3a3a3a;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    }
-    select {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      appearance: none;
-      background: #3a3a3a;
-      color: #d4af37;
-      cursor: pointer;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    select:focus {
-      outline: none;
-      box-shadow: 0 0 10px #007bff;
-    }
-    .card {
-      background: #2a2a2a;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      width: 100%;
-      max-width: 640px;
-      padding: 1.5rem;
-      margin-top: 2rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-    }
-    .role {
-      font-weight: bold;
-      color: #007bff;
-    }
-    .section + .section {
-      margin-top: 1rem;
-    }
-    .section h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-      color: #007bff;
-    }
-    .section ul {
-      list-style: inside disc;
-      padding-left: 0.5rem;
-    }
-    .highlight {
-      color: #ff4500;
-      text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500;
-      animation: glow 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; }
-      to { text-shadow: 0 0 20px #ff4500, 0 0 30px #ff4500; }
-    }
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    h2 { font-size: 2rem; margin-top: 1rem; color: #007bff; }
+    .select-wrapper { position: relative; width: 320px; margin-bottom: 2rem; background: #3a3a3a; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
+    select { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: none; border-radius: 8px; appearance: none; background: #3a3a3a; color: #d4af37; cursor: pointer; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+    select:focus { outline: none; box-shadow: 0 0 10px #007bff; }
+    .card { background: #2a2a2a; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); width: 100%; max-width: 640px; padding: 1.5rem; margin-top: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.7); }
+    .role { font-weight: bold; color: #007bff; }
+    .section + .section { margin-top: 1rem; }
+    .section h3 { margin-bottom: 0.5rem; font-size: 1.1rem; color: #007bff; }
+    .section ul { list-style: inside disc; padding-left: 0.5rem; }
+    .highlight { color: #ff4500; text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; animation: glow 1.5s ease-in-out infinite alternate; }
+    @keyframes glow { from { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; } to { text-shadow: 0 0 20px #ff4500, 0 0 30px #ff4500; } }
+    .build-container { display: flex; justify-content: space-around; margin-top: 1rem; }
+    .build-box { background: #3a3a3a; border-radius: 8px; padding: 1rem; width: 45%; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
+    .build-box h4 { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
   </style>
 </head>
 <body>
   <h1>RuneForge – Forja de Runas</h1>
-
   <div class="select-wrapper">
     <select id="champions">
       <option value="">-- Elige un campeón --</option>
     </select>
   </div>
-
   <div id="instructions" class="card">
     <p>Selecciona un campeón para ver su rol, consejos y build.</p>
   </div>
 
   <script>
     const instructions = {
-      "Garen": { role: "Top", tips: ["Q limpia minions y hostiga; W protege; E hace daño en área; R ejecuta.", "Activa tu pasiva antes de intercambios largos.", "Entra agresivo cuando el enemigo tenga CD o sin recursos."], build: "Berserker's Greaves, Stridebreaker, Phantom Dancer, Black Cleaver, Spear of Shojin, Dead Man’s Plate — Runas: Conqueror, Triumph, Legend: Haste, Last Stand" },
-      "Sylas": { role: "Mid / Jungla", tips: ["Robar ulti con R puede ganar peleas.", "Combo W → E → Q para burst y sustain.", "Posiciónate bien antes de robar la ulti enemiga."], build: "Rocketbelt, Shadowflame, Zhonya’s — Runas: Conqueror + Second Wind o Unflinching" },
-      "Darius": { role: "Top / Bruiser", tips: ["Acumula pasiva para aplicar daño verdadero.", "Engancha con E y usa W para resistir daño.", "R ejecuta enemigos con poca vida."], build: "Stridebreaker, Steelcaps, Sterak’s Gage, Dead Man’s Plate, Force of Nature — Runas: Conqueror, Triumph, Legend: Tenacity, Last Stand" },
-      "Ornn": { role: "Top / Tank", tips: ["Forja objetos únicos para tu equipo.", "Q para poke, E para desplazamiento, R para iniciar peleas.", "Sé frontline y absorbe daño."], build: "Sunfire Aegis, Thornmail, Warmog’s Armor — Runas: Grasp of the Undying, Second Wind, Overgrowth" },
-      "Lux": { role: "Mid / Support", tips: ["Q atrapa enemigos, E da daño en área.", "R remata a distancia.", "Mantente a salvo detrás de aliados y hostiga constantemente."], build: "Liandry’s Anguish, Rylai’s Crystal Scepter, Zhonya’s Hourglass — Runas: Arcane Comet, Manaflow Band, Transcendence" },
-      "Ashe": { role: "Bot", tips: ["Q aumenta velocidad de ataque.", "W ralentiza enemigos.", "R inicia peleas o remata enemigos."], build: "Kraken Slayer, Runaan’s Hurricane, Guardian Angel — Runas: Lethal Tempo, Presence of Mind, Legend: Bloodline" },
-      "Leona": { role: "Support", tips: ["Q inicia engage, W reduce daño recibido.", "E acerca a enemigos, R aturde en área.", "Sé frontline y protege al ADC."], build: "Locket of the Iron Solari, Zeke’s Convergence, Thornmail — Runas: Aftershock, Font of Life, Unflinching" },
-      "Master Yi": { role: "Jungla", tips: ["Q salta entre enemigos, W cura.", "E aumenta velocidad de ataque.", "R te hace inmune a CC y permite limpiar la jungla rápido."], build: "Kraken Slayer, Guinsoo’s Rageblade, Wuju Style — Runas: Conqueror, Triumph, Legend: Alacrity" }
+      "Garen": { role: "Top", tips: ["Q limpia minions y hostiga; W protege; E hace daño en área; R ejecuta.", "Activa tu pasiva antes de intercambios largos.", "Entra agresivo cuando el enemigo tenga CD o sin recursos."], items: ["Berserker's Greaves", "Stridebreaker", "Phantom Dancer", "Black Cleaver", "Spear of Shojin", "Dead Man’s Plate"], runes: ["Conqueror", "Triumph", "Legend: Haste", "Last Stand"] },
+      "Sylas": { role: "Mid / Jungla", tips: ["Robar ulti con R puede ganar peleas.", "Combo W → E → Q para burst y sustain.", "Posiciónate bien antes de robar la ulti enemiga."], items: ["Rocketbelt", "Shadowflame", "Zhonya’s"], runes: ["Conqueror", "Second Wind", "Unflinching"] }
+      // Agrega más campeones aquí...
     };
 
-    const champList = ["Garen", "Sylas", "Darius", "Ornn", "Lux", "Ashe", "Leona", "Master Yi", "Dr. Mundo", "Annie", "Malphite", "Warwick", "Amumu", "Soraka", "Ezreal", "Jinx", "Miss Fortune", "Lucian", "Thresh", "Nautilus", "Morgana", "Brand", "Caitlyn", "Nami", "Lulu", "Senna", "Yasuo", "Fiora", "Riven", "Irelia", "Sett", "Nasus", "Mordekaiser", "Poppy", "Kayle", "Swain", "Yone", "Nocturne", "Katarina", "Vayne", "Kha'Zix", "Rengar", "Teemo", "Nunu", "Veigar", "Orianna", "Blitzcrank", "Karma"];
-
+    const champList = Object.keys(instructions);
     const select = document.getElementById("champions");
     champList.forEach(champ => {
       const opt = document.createElement("option");
@@ -131,21 +65,25 @@
       const div = document.getElementById("instructions");
       if (!champ) {
         div.innerHTML = `<p>Selecciona un campeón para ver su rol, consejos y build.</p>`;
-      } else if (instructions[champ]) {
-        const { role, tips, build } = instructions[champ];
+      } else {
+        const { role, tips, items, runes } = instructions[champ];
         div.innerHTML = `
           <h2>${champ} – <span class="role">${role}</span></h2>
           <div class="section">
             <h3>Consejos para principiantes:</h3>
             <ul>${tips.map(t => `<li>${t}</li>`).join('')}</ul>
           </div>
-          <div class="section">
-            <h3>Build recomendada:</h3>
-            <p class="highlight">${build}</p>
+          <div class="build-container">
+            <div class="build-box">
+              <h4>🗡️ Items</h4>
+              <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
+            </div>
+            <div class="build-box">
+              <h4>🔮 Runas</h4>
+              <ul>${runes.map(r => `<li>${r}</li>`).join('')}</ul>
+            </div>
           </div>
         `;
-      } else {
-        div.innerHTML = `<p>No hay datos para este campeón aún, ¡pero los agregaremos pronto!</p>`;
       }
     });
   </script>
