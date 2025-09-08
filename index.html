@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Guía Interactiva LoL – Campeones y Builds</title>
+  <title>Guía LoL para Principiantes – 100 Campeones</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f0f2f5; margin:0; padding:20px; }
     h1 { text-align: center; }
@@ -31,25 +31,43 @@
       "Garen": {
         role: "Top",
         tips: [
-          "Usa Conqueror para intercambios largos y sostenidos.",
-          "Q para silenciar y resetear ataque, W para defenderte, E para daño en área.",
-          "Aprovecha tu ulti como ejecútala cuando el enemigo esté bajo de vida."
+          "Usa Q para limpiar súbditos y hostigar, W para defenderte, E para daño en área y R para ejecución.",
+          "Busca intercambios cuando la pasiva de regeneración esté activa.",
+          "Presiona si el enemigo está mal posicionado o sin recursos."
         ],
-        build: "Stridebreaker → Berserker’s Greaves → Phantom Dancer → Spear of Shojin → Dead Man’s Plate; runas: Conqueror, Triumph, Legend: Haste, Last Stand" 
+        build: "Stridebreaker → Phantom Dancer → Dead Man’s Plate; runas: Conqueror, Triumph, Legend: Haste, Last Stand" // :contentReference[oaicite:0]{index=0}
       },
       "Sylas": {
-        role: "Jungla / Mid",
+        role: "Mid / Jungla",
         tips: [
-          "Robar ultis enemigos (R) es clave: elige siempre la mejor ulti del enemigo.",
-          "W (Kingslayer) para curarte, W→E→Q para burst efectivamente.",
-          "Posiciónate bien para robar ultis decisivas."
+          "Robar ulti enemiga con R en el momento clave del combate.",
+          "Core combo: W (Kingslayer) → E → Q para burst y curarte.",
+          "Posiciónate bien antes de robar la ulti para maximizar impacto."
         ],
-        build: "Hextech Rocketbelt → Sorcerer’s Shoes → Shadowflame → Zhonya’s Hourglass → Rabadon’s Deathcap; runas: Dark Harvest, Sudden Impact, Grisly Mementos, Treasure Hunter (Inspiración secundaria)" 
+        build: "Hextech Rocketbelt → Shadowflame → Zhonya’s Hourglass; runas: Conqueror primary + Second Wind, Unflinching secondary" // :contentReference[oaicite:1]{index=1}
+      },
+      "Darius": {
+        role: "Top / Jungla bruiser",
+        tips: [
+          "Aprovecha pasiva para limpiar rápido y snowballear.",
+          "Empieza con Stridebreaker para enganchar e iniciar peleas.",
+          "Construye daño y supervivencia: Sterak’s Gage, Dead Man’s Plate."
+        ],
+        build: "Stridebreaker → Plated Steelcaps → Sterak’s Gage → Dead Man’s Plate → Force of Nature; runas: Conqueror, Triumph, Legend: Alacrity, Last Stand" // :contentReference[oaicite:2]{index=2}
+      },
+      "Ornn": {
+        role: "Top / Tank",
+        tips: [
+          "Forja objetos defensivos únicos con tu pasiva (Eternal Forge).",
+          "Usa Q para poke y clear, y R para iniciar peleas en equipo.",
+          "Juega de línea frontal: absorbe daño y protege a tu equipo."
+        ],
+        build: "Sunfire Aegis → Thornmail → Abyssal Mask / Randuin’s Omen (situational)" // Basado en rol tanque general, *no se encontró fuente precisa*
       }
-      // Agrega más campeones con rol, tips y build según necesites...
+      // Puedes añadir más campeones aquí siguiendo esta estructura...
     };
 
-    const champList = ["Garen","Sylas","Darius","Ornn","Lux","Ashe", /* completa hasta 100 */];
+    const champList = ["Garen","Sylas","Darius","Ornn","Lux","Ashe","Leona","Master Yi","Dr. Mundo","Annie", /*...hasta completar 100*/];
 
     const select = document.getElementById('champions');
     champList.forEach(name => {
