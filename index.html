@@ -62,10 +62,10 @@
     <div class="champion-selector">
         <label for="champion">Selecciona tu campeón:</label>
         <select id="champion">
-            <option value="ornn">Ornn</option>
+            <option value="aatrox">Aatrox</option>
             <option value="sylas">Sylas</option>
             <option value="viego">Viego</option>
-            <option value="aatrox">Aatrox</option>
+            <option value="ornn">Ornn</option>
         </select>
     </div>
 
@@ -86,22 +86,22 @@
 
 <script>
     const buildsData = {
-        ornn: {
+        aatrox: {
             assassin: {
-                items: ["Sunfire Aegis", "Thornmail", "Force of Nature", "Plated Steelcaps", "Spirit Visage", "Randuin's Omen"],
-                runes: ["Aftershock", "Font of Life", "Conditioning", "Overgrowth"]
-            },
-            tank: {
-                items: ["Frostfire Gauntlet", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
-                runes: ["Aftershock", "Font of Life", "Second Wind", "Overgrowth"]
+                items: ["Eclipse", "Plated Steelcaps", "Serylda's Grudge", "Sterak's Gage", "Death's Dance", "Guardian Angel"],
+                runes: ["Conqueror", "Triumph", "Legend: Alacrity", "Coup de Grace", "Second Wind", "Overgrowth"]
             },
             mage: {
-                items: ["Sunfire Aegis", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
-                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
+                items: ["Plated Steelcaps", "Sterak's Gage", "Death's Dance", "Spirit Visage", "Sterak's Gage", "Guardian Angel"],
+                runes: ["Conqueror", "Triumph", "Legend: Tenacity", "Last Stand", "Second Wind", "Overgrowth"]
             },
             marksman: {
-                items: ["Sunfire Aegis", "Thornmail", "Randuin's Omen", "Plated Steelcaps", "Spirit Visage", "Warmog's Armor"],
-                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
+                items: ["Eclipse", "Plated Steelcaps", "Serylda's Grudge", "Sterak's Gage", "Death's Dance", "Guardian Angel"],
+                runes: ["Conqueror", "Triumph", "Legend: Alacrity", "Coup de Grace", "Second Wind", "Overgrowth"]
+            },
+            tank: {
+                items: ["Plated Steelcaps", "Sterak's Gage", "Death's Dance", "Spirit Visage", "Sterak's Gage", "Guardian Angel"],
+                runes: ["Conqueror", "Triumph", "Legend: Tenacity", "Last Stand", "Second Wind", "Overgrowth"]
             }
         },
         sylas: {
@@ -109,27 +109,23 @@
                 items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
                 runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
             },
-            tank: {
-                items: ["Everfrost", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Morellonomicon"],
-                runes: ["Electrocute", "Cheap Shot", "Eyeball Collection", "Ravenous Hunter"]
-            },
             mage: {
-                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Rabadon's Deathcap"],
+                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
                 runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
             },
             marksman: {
-                items: ["Everfrost", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Morellonomicon"],
-                runes: ["Electrocute", "Cheap Shot", "Eyeball Collection", "Ravenous Hunter"]
+                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
+                runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
+            },
+            tank: {
+                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
+                runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
             }
         },
         viego: {
             assassin: {
                 items: ["Eclipse", "The Collector", "Sterak's Gage", "Guardian Angel", "Mercury's Treads", "Bloodthirster"],
                 runes: ["Conqueror", "Triumph", "Legend: Tenacity", "Coup de Grace"]
-            },
-            tank: {
-                items: ["Goredrinker", "Sterak's Gage", "Death's Dance", "Titanic Hydra", "Plated Steelcaps", "Spirit Visage"],
-                runes: ["Conqueror", "Triumph", "Legend: Tenacity", "Last Stand"]
             },
             mage: {
                 items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
@@ -138,24 +134,28 @@
             marksman: {
                 items: ["Eclipse", "The Collector", "Infinity Edge", "Bloodthirster", "Guardian Angel", "Berserker's Greaves"],
                 runes: ["Conqueror", "Triumph", "Legend: Alacrity", "Coup de Grace"]
-            }
-        },
-        aatrox: {
-            assassin: {
-                items: ["Goredrinker", "Sterak's Gage", "Death's Dance", "Plated Steelcaps", "Guardian Angel", "Spirit Visage"],
-                runes: ["Conqueror", "Triumph", "Legend: Tenacity", "Last Stand"]
             },
             tank: {
-                items: ["Black Cleaver", "Sterak's Gage", "Death's Dance", "Plated Steelcaps", "Spirit Visage", "Guardian Angel"],
+                items: ["Goredrinker", "Sterak's Gage", "Death's Dance", "Titanic Hydra", "Plated Steelcaps", "Spirit Visage"],
                 runes: ["Conqueror", "Triumph", "Legend: Tenacity", "Last Stand"]
+            }
+        },
+        orn: {
+            assassin: {
+                items: ["Sunfire Aegis", "Thornmail", "Force of Nature", "Plated Steelcaps", "Spirit Visage", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Conditioning", "Overgrowth"]
             },
             mage: {
-                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
-                runes: ["Electrocute", "Sudden Impact", "Eyeball Collection", "Ravenous Hunter"]
+                items: ["Sunfire Aegis", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
             },
             marksman: {
-                items: ["Goredrinker", "Black Cleaver", "Death's Dance", "Infinity Edge", "Guardian Angel", "Berserker's Greaves"],
-                runes: ["Conqueror", "Triumph", "Legend: Alacrity", "Coup de Grace"]
+                items: ["Sunfire Aegis", "Thornmail", "Randuin's Omen", "Plated Steelcaps", "Spirit Visage", "Warmog's Armor"],
+                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
+            },
+            tank: {
+                items: ["Frostfire Gauntlet", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Second Wind", "Overgrowth"]
             }
         }
     };
