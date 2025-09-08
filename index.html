@@ -1,108 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>RuneForge – Builds Profesionales</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cinzel', serif; background: #1c1c1c; color: #d4af37; display: flex; flex-direction: column; align-items: center; padding: 2rem; text-align: center; }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-    h2 { font-size: 2rem; margin-top: 1rem; color: #007bff; }
-    .select-wrapper { position: relative; width: 320px; margin-bottom: 2rem; background: #3a3a3a; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
-    select { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: none; border-radius: 8px; appearance: none; background: #3a3a3a; color: #d4af37; cursor: pointer; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-    select:focus { outline: none; box-shadow: 0 0 10px #007bff; }
-    .card { background: #2a2a2a; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); width: 100%; max-width: 900px; padding: 1.5rem; margin-top: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.7); }
-    .role { font-weight: bold; color: #007bff; }
-    .section { margin-top: 1rem; }
-    .section h3 { margin-bottom: 0.5rem; font-size: 1.2rem; color: #00d4ff; }
-    .build-container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; }
-    .build { background: #3a3a3a; border-radius: 8px; padding: 1rem; flex: 1 1 45%; min-width: 250px; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
-    .build h4 { margin-bottom: 0.5rem; color: #ffdf00; }
-    .build ul { list-style: none; padding-left: 0; }
-    .build li { margin: 0.3rem 0; font-size: 1rem; }
-    .item-icon { width: 24px; height: 24px; vertical-align: middle; margin-right: 0.3rem; }
-    .rune-icon { width: 24px; height: 24px; vertical-align: middle; margin-right: 0.3rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Champion Builds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #111128;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+        }
+        .champion-selector, .enemy-selector {
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+        .builds {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .build-card {
+            background-color: #2a2a3f;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        .build-card h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .item-list, .runes-list {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-  <h1>RuneForge – Builds Profesionales</h1>
 
-  <div class="select-wrapper">
-    <select id="champions">
-      <option value="">-- Elige un campeón --</option>
-    </select>
-  </div>
+<header>LoL Champion Builds</header>
 
-  <div id="instructions" class="card">
-    <p>Selecciona un campeón para ver sus builds de items y runas según la situación.</p>
-  </div>
+<main>
+    <div class="champion-selector">
+        <label for="champion">Selecciona tu campeón:</label>
+        <select id="champion">
+            <option value="ornn">Ornn</option>
+            <option value="sylas">Sylas</option>
+            <option value="ahri">Ahri</option>
+            <option value="yasuo">Yasuo</option>
+        </select>
+    </div>
 
-  <script>
-    const instructions = {
-      "Garen": {
-        role: "Top",
-        builds: [
-          { situacion: "Vs AD pesado", items: ["Placa del Hombre Muerto", "Corazón de Hielo", "Malla de Espinas"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Valor", "Inspiración"] },
-          { situacion: "Vs AP pesado", items: ["Fuerza de la Trinidad", "Tabi de Ninja", "Fauces de Malmortius"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Valor", "Inspiración"] }
-        ]
-      },
-      "Sylas": {
-        role: "Mid / Jungla",
-        builds: [
-          { situacion: "Burst", items: ["Cinturón Hextech", "Eco de Luden", "Reloj de Zhonya"], runas: ["Electrocutar", "Impacto Repentino", "Cazador Voraz", "Cazador Ingenioso", "Dominación", "Inspiración"] },
-          { situacion: "Sustain", items: ["Eco de Luden", "Sombras de Morellonomicon", "Reloj de Zhonya"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Dominación", "Inspiración"] }
-        ]
-      },
-      "Ornn": {
-        role: "Top / Tank",
-        builds: [
-          { situacion: "Frontline", items: ["Aegis de Fuego Solar", "Malla de Espinas", "Corazón de Roca"], runas: ["Agarre del Inmortal", "Segundo Viento", "Crecimiento Excesivo", "Valor", "Inspiración"] }
-        ]
-      },
-      "Darius": {
-        role: "Top / Bruiser",
-        builds: [
-          { situacion: "All-in", items: ["Stridebreaker", "Steelcaps", "Sterak's Gage"], runas: ["Conquistador", "Triunfo", "Leyenda: Tenacidad", "Golpe de Gracia", "Valor", "Inspiración"] }
-        ]
-      }
+    <div class="enemy-selector">
+        <label for="enemy">Contra quién juegas:</label>
+        <select id="enemy">
+            <option value="general">General</option>
+            <option value="assassin">Asesinos</option>
+            <option value="tank">Tanques</option>
+            <option value="mage">Magos</option>
+        </select>
+    </div>
+
+    <div class="builds" id="builds">
+        <!-- Aquí aparecerán los builds -->
+    </div>
+</main>
+
+<script>
+    const buildsData = {
+        ornn: {
+            general: {
+                items: ["Sunfire Aegis", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Bone Plating", "Overgrowth"]
+            },
+            assassin: {
+                items: ["Sunfire Aegis", "Thornmail", "Force of Nature", "Plated Steelcaps", "Spirit Visage", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Conditioning", "Overgrowth"]
+            },
+            tank: {
+                items: ["Frostfire Gauntlet", "Thornmail", "Gargoyle Stoneplate", "Plated Steelcaps", "Warmog's Armor", "Randuin's Omen"],
+                runes: ["Aftershock", "Font of Life", "Second Wind", "Overgrowth"]
+            }
+        },
+        sylas: {
+            general: {
+                items: ["Hextech Rocketbelt", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Rabadon's Deathcap", "Morellonomicon"],
+                runes: ["Electrocute", "Taste of Blood", "Eyeball Collection", "Ravenous Hunter"]
+            },
+            tank: {
+                items: ["Everfrost", "Zhonya's Hourglass", "Cosmic Drive", "Sorcerer's Shoes", "Demonic Embrace", "Morellonomicon"],
+                runes: ["Electrocute", "Cheap Shot", "Eyeball Collection", "Ravenous Hunter"]
+            }
+        }
     };
 
-    const champList = Object.keys(instructions);
-    const select = document.getElementById("champions");
-    champList.forEach(champ => {
-      const opt = document.createElement("option");
-      opt.value = champ;
-      opt.textContent = champ;
-      select.appendChild(opt);
-    });
+    const championSelect = document.getElementById("champion");
+    const enemySelect = document.getElementById("enemy");
+    const buildsDiv = document.getElementById("builds");
 
-    select.addEventListener("change", () => {
-      const champ = select.value;
-      const div = document.getElementById("instructions");
-      if (!champ) {
-        div.innerHTML = `<p>Selecciona un campeón para ver sus builds de items y runas según la situación.</p>`;
-      } else {
-        const { role, builds } = instructions[champ];
-        div.innerHTML = `<h2>${champ} – <span class="role">${role}</span></h2>`;
-        builds.forEach(b => {
-          div.innerHTML += `
-            <div class="section">
-              <h3>Situación: ${b.situacion}</h3>
-              <div class="build-container">
-                <div class="build">
-                  <h4>Items</h4>
-                  <ul>${b.items.map(i => `<li>🛡️ ${i}</li>`).join('')}</ul>
-                </div>
-                <div class="build">
-                  <h4>Runas</h4>
-                  <ul>${b.runas.map(r => `<li>🔮 ${r}</li>`).join('')}</ul>
-                </div>
-              </div>
-            </div>`;
-        });
-      }
-    });
-  </script>
+    function showBuild() {
+        const champ = championSelect.value;
+        const enemy = enemySelect.value;
+        const build = buildsData[champ][enemy] || buildsData[champ]["general"];
+
+        buildsDiv.innerHTML = `
+            <div class="build-card">
+                <h3>${champ.toUpperCase()} - Build vs ${enemy}</h3>
+                <h4>Items:</h4>
+                <ul class="item-list">
+                    ${build.items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+                <h4>Runas:</h4>
+                <ul class="runes-list">
+                    ${build.runes.map(r => `<li>${r}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
+
+    championSelect.addEventListener("change", showBuild);
+    enemySelect.addEventListener("change", showBuild);
+
+    showBuild(); // Mostrar build inicial
+</script>
+
 </body>
 </html>
