@@ -43,11 +43,7 @@
     <label for="champions">Selecciona un campeón: </label>
     <select id="champions">
       <option value="">--Elige un campeón--</option>
-      <option value="Dr. Mundo">Dr. Mundo (Top)</option>
-      <option value="Master Yi">Master Yi (Jungla)</option>
-      <option value="Lux">Lux (Mid)</option>
-      <option value="Ashe">Ashe (ADC)</option>
-      <option value="Leona">Leona (Soporte)</option>
+      <!-- Aquí van 50 campeones -->
     </select>
   </div>
 
@@ -57,68 +53,76 @@
 
   <script>
     const instructions = {
-      "Dr. Mundo": {
+      "Garen": {
         role: "Top",
         tips: [
-          "Mantén la línea y enfócate en resistir el daño enemigo.",
-          "Usa tu habilidad 'Q' para farmear y hostigar al oponente.",
-          "Compra objetos de vida y resistencia para maximizar tu durabilidad.",
-          "Participa en peleas grupales como iniciador y absorbe el daño enemigo."
+          "Mantén la línea con valor, su pasiva regenera salud si no recibes daño.",
+          "Usa tu Q para limpiar súbditos y “spin-to-win” contra enemigos.",
+          "Usa W para reducir daño y E para daño adicional en combos.",
+          "Compra objetos de vida y resistencia, entra en pelea cuando tu ulti esté disponible."
         ]
       },
-      "Master Yi": {
-        role: "Jungla",
+      "Darius": {
+        role: "Top",
         tips: [
-          "Comienza en el campamento de la jungla más cercano al bot para obtener ayuda.",
-          "Prioriza la limpieza eficiente de la jungla para alcanzar el nivel 6 rápidamente.",
-          "Usa tu habilidad 'Q' para esquivar habilidades enemigas y asegurar asesinatos.",
-          "En peleas grupales, espera a que se usen las habilidades de control antes de entrar."
+          "Presiona agresivamente en línea cuando los enemigos se equivoquen.",
+          "Usa E para atraer enemigos, luego aplica tus otros habilidades seguidas.",
+          "Tu pasiva y ulti reiniciable pueden hacerte dominante en peleas.",
+          "Construye daño físico y algo de resistencia para aguantar duelos."
         ]
       },
-      "Lux": {
-        role: "Mid",
+      "Ornn": {
+        role: "Top/Tank",
         tips: [
-          "Mantén la distancia y utiliza tus habilidades para hostigar al enemigo.",
-          "Usa tu habilidad 'E' para controlar zonas y evitar emboscadas.",
-          "Coordina con tu jungla para asegurar asesinatos con tu habilidad 'Q'.",
-          "En peleas grupales, posiciona tus habilidades para maximizar el daño en área."
+          "Fase temprana resistente: usa tu pasiva para forjar objetos defensivos únicos.",
+          "Usa Q para acertar farmeo y hostigar de lejos.",
+          "Elige momento para iniciar peleas con tu R, combinándolo con control del equipo.",
+          "Compra objetos de línea frontal para proteger a tu equipo."
         ]
       },
-      "Ashe": {
-        role: "ADC",
+      "Sylas": {
+        role: "Mid/Luchador",
         tips: [
-          "Concéntrate en farmear minions para obtener oro y objetos clave.",
-          "Usa tu habilidad 'W' para hostigar y ralentizar a los enemigos.",
-          "Posiciónate detrás de tu equipo en peleas grupales para infligir daño seguro.",
-          "Utiliza tu habilidad 'R' para iniciar peleas o atrapar enemigos escapando."
+          "Robar ultis enemigos con tu R es muy poderoso — observa bien las habilidades disponibles.",
+          "Usa Q+W para hacer daño rápido en combates cortos.",
+          "Posiciónate de forma que puedas esquivar habilidades clave antes de robar ultis.",
+          "Construye daño mágico con algo de resistencia para aguantar intercambios."
         ]
       },
-      "Leona": {
-        role: "Soporte",
-        tips: [
-          "Coloca guardianes de visión en puntos clave para evitar emboscadas.",
-          "Usa tu habilidad 'E' para iniciar peleas y tu 'Q' para aturdir al objetivo.",
-          "Protege a tu ADC y coordina ataques para asegurar asesinatos.",
-          "En peleas grupales, busca oportunidades para aturdir a múltiples enemigos con tu habilidad 'R'."
-        ]
-      }
+      // Otros 46 campeones aquí...
     };
 
+    const champList = [
+      "Garen","Darius","Ornn","Sylas",
+      // Agrega hasta llegar a 50 campeones
+      "Lux","Ashe","Leona","Master Yi","Dr. Mundo","Annie","Warwick","Malphite",
+      "Amumu","Soraka","Anivia","Caitlyn","Jax","Nasus","Mordekaiser","Poppy",
+      "Sett","Fiora","Irelia","Yasuo","Jinx","Ezreal","Lucian","Thresh",
+      "Jhin","Sona","Nami","Lulu","Janna","Maokai","Rammus","Volibear",
+      "Kayle","Vex","Veigar","Morgana","Brand","Blitzcrank","Renekton","Tryndamere",
+      "Swain","Zed","Kassadin","Orianna","Draven","Nautilus","Riven","Cassiopeia"
+    ];
+
     const select = document.getElementById('champions');
-    const instructionsDiv = document.getElementById('instructions');
+    champList.forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      select.appendChild(opt);
+    });
 
     select.addEventListener('change', () => {
       const champ = select.value;
       if (champ && instructions[champ]) {
         const { role, tips } = instructions[champ];
-        instructionsDiv.innerHTML = `
+        document.getElementById('instructions').innerHTML = `
           <h2>${champ} - Rol: <span class="role">${role}</span></h2>
           <ul>
             ${tips.map(tip => `<li>${tip}</li>`).join('')}
           </ul>
         `;
       } else {
-        instructionsDiv.innerHTML = '<p>Selecciona un campeón para ver las instrucciones detalladas.</p>';
+        document.getElementById('instructions').innerHTML = '<p>Selecciona un campeón para ver las instrucciones detalladas.</p>';
       }
     });
   </script>
